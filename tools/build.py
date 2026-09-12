@@ -146,7 +146,7 @@ CATEGORIES = [
  ]},
 ]
 
-GALLERY = ["ma-hero","mma-shorts","fit-leggings","fac-sewing","strap-cotton","dummy-throw",
+GALLERY = ["ma-hero","mma-shorts","fit-leggings","fac-mill-v2","strap-cotton","dummy-throw",
            "ma-belt","mma-rashguard","fit-tee","fac-thread","strap-fig8","dummy-gp"]
 
 def slugify(s): return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")
@@ -332,7 +332,7 @@ def build_home():
 <div class="hero-art">
 <figure class="reveal-img"><span class="annot annot-tl">Fabric<b>550 GSM</b></span>{img(rel, 'ma-bjj-gi', 'Athletes training in NTF custom gis')}</figure>
 <figure class="reveal-img">{img(rel, 'fit-leggings', 'Custom fitness wear manufactured by NTF')}</figure>
-<figure class="reveal-img"><span class="annot annot-br">Stitch<b>Lock + bar-tack</b></span>{img(rel, 'fac-sewing', 'NTF production floor in Sialkot')}</figure>
+<figure class="reveal-img"><span class="annot annot-br">Stitch<b>Lock + bar-tack</b></span>{img(rel, 'fac-mill-v2', 'NTF production floor in Sialkot')}</figure>
 <div class="float-card">
 <span class="dotg">{I['shield']}</span>
 <span><b>Sample before bulk</b><span>Nothing ships until you sign it off</span></span>
@@ -385,7 +385,7 @@ def build_home():
 <a class="btn btn-dark" href="about.html" data-magnetic>More about NTF {I['arrow']}</a>
 </div>
 <div class="media-stack">
-<div class="media-frame reveal-img">{img(rel, 'fac-line', 'NTF stitching line')}</div>
+<div class="media-frame reveal-img">{img(rel, 'fac-floor-v2', 'NTF stitching line')}</div>
 <div class="media-frame reveal-img">{img(rel, 'fac-thread', 'Thread store at the NTF factory')}</div>
 <div class="media-frame reveal-img">{img(rel, 'fac-machine', 'Knitting machine detail')}</div>
 </div>
@@ -583,7 +583,7 @@ def build_about():
 <p>NTF is a custom sportswear manufacturer based in Sialkot, Pakistan, the city that has been making the world&rsquo;s combat sports gear for a century. We make for gyms, academies, fight teams and apparel labels who want their own product rather than a logo on someone else&rsquo;s catalogue.</p>
 </div></section>
 <section><div class="wrap split">
-<div class="media-frame reveal-img" style="aspect-ratio:4/5">{img(rel, 'fac-sewing', 'NTF production floor')}</div>
+<div class="media-frame reveal-img" style="aspect-ratio:4/5">{img(rel, 'fac-mill-v2', 'NTF production floor')}</div>
 <div class="reveal">
 <div class="sec-index"><span class="idx">[ 02 ]</span><h2>What we actually do</h2></div>
 <p class="lead">We take a brief, a tech pack, a competitor sample or sometimes just a conversation, and turn it into a pattern, a sample and then a production run.</p>
@@ -599,7 +599,7 @@ def build_about():
 <section><div class="wrap">
 <div class="sec-index"><span class="idx">[ 04 ]</span><h2>Inside the floor</h2></div>
 <div class="grid g3" style="margin-top:2rem">
-<div class="media-frame reveal-img">{img(rel, 'fac-line', 'Stitching line')}</div>
+<div class="media-frame reveal-img">{img(rel, 'fac-floor-v2', 'Stitching line')}</div>
 <div class="media-frame reveal-img">{img(rel, 'fac-spools', 'Thread spools')}</div>
 <div class="media-frame reveal-img">{img(rel, 'fac-machine', 'Machine detail')}</div>
 </div>
