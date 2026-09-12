@@ -23,6 +23,7 @@ def ver(relpath):
     except OSError:
         return ""
 
+SITE = "https://danialhyatt7-collab.github.io/NTF/"
 PHONE = "+92 333 8686122"
 PHONE_TEL = "+923338686122"
 PHONE_WA = "923338686122"
@@ -170,7 +171,7 @@ def img(rel, key, alt, cls="", extra=""):
 NAV = [("Home","index.html"),("Collections","collections.html"),("Process","process.html"),
        ("About","about.html"),("Contact","contact.html")]
 
-def head(title, desc, rel):
+def head(title, desc, rel, page=""):
     style_v = ver("assets/css/style.css")
     fonts_v = ver("assets/css/fonts.css")
     return f"""<!DOCTYPE html>
@@ -180,9 +181,22 @@ def head(title, desc, rel):
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{title}</title>
 <meta name="description" content="{desc}">
+<meta property="og:site_name" content="NTF Sportswear">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="{SITE}{page}">
+<meta property="og:image" content="{SITE}assets/img/og-cover.jpg">
+<meta property="og:image:secure_url" content="{SITE}assets/img/og-cover.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="NTF Sportswear - custom martial arts, MMA and fitness apparel">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{title}">
+<meta name="twitter:description" content="{desc}">
+<meta name="twitter:image" content="{SITE}assets/img/og-cover.jpg">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="{rel}assets/img/logo-green.svg" type="image/svg+xml">
 <link rel="preload" as="font" type="font/woff2" href="{rel}assets/fonts/plus-jakarta-sans-800-latin.woff2" crossorigin>
@@ -419,7 +433,7 @@ def build_home():
                      "Private Label","Low Minimums","Worldwide Shipping"] * 2)
 
     return (head("NTF Sportswear | Custom Martial Arts, MMA &amp; Fitness Apparel Manufacturer",
-        "NTF manufactures custom martial arts uniforms, MMA fight wear, grappling dummies, gym apparel and lifting straps. Low minimums, your branding, shipped worldwide.", rel)
+        "NTF manufactures custom martial arts uniforms, MMA fight wear, grappling dummies, gym apparel and lifting straps. Low minimums, your branding, shipped worldwide.", rel, "index.html")
     + header(rel, "index.html")
     + f"""<section class="hero"><div class="wrap hero-grid">
 <div>
@@ -543,7 +557,7 @@ def build_collections():
 <div class="tile-body"><p class="kicker">{c['tag']} &middot; 5 products</p><h3>{c['name']}</h3>
 <p>{c['blurb']}</p><span class="arrow-link">View collection <span>{I['arrow']}</span></span></div></a>"""
     return (head("Collections | NTF Custom Sportswear",
-        "Browse NTF collections: martial arts uniforms, MMA wear, grappling dummies, fitness wear and gym wrist straps.", rel)
+        "Browse NTF collections: martial arts uniforms, MMA wear, grappling dummies, fitness wear and gym wrist straps.", rel, "collections.html")
     + header(rel, "collections.html")
     + f"""<section class="pagehead"><div class="wrap">
 <p class="crumbs"><a href="index.html">Home</a> / Collections</p>
@@ -557,7 +571,7 @@ def build_category(c):
     rel = "../"
     cards = "".join(pcard(c, p, rel) for p in c["products"])
     others = "".join(f'<a href="{o["slug"]}.html">{o["name"]}</a>' for o in CATEGORIES if o["slug"] != c["slug"])
-    return (head(f"{c['name']} | NTF Custom Sportswear", c["blurb"], rel)
+    return (head(f"{c['name']} | NTF Custom Sportswear", c["blurb"], rel, f"collections/{c['slug']}.html")
     + header(rel, "collections.html")
     + f"""<section class="pagehead"><div class="wrap">
 <p class="crumbs"><a href="{rel}index.html">Home</a> / <a href="{rel}collections.html">Collections</a> / {c['name']}</p>
@@ -591,7 +605,7 @@ def build_product(c, p):
     sizes = " &middot; ".join(p["sizes"])
     related = "".join(pcard(c, q, rel) for q in others[:3])
     tags = "".join(f'<span>{t}</span>' for t in p["tags"])
-    return (head(f"{p['name']} | {c['name']} | NTF Custom Sportswear", p["desc"], rel)
+    return (head(f"{p['name']} | {c['name']} | NTF Custom Sportswear", p["desc"], rel, f"products/{s}.html")
     + header(rel, "collections.html")
     + f"""<section class="pagehead" style="background:var(--bg);border:0;padding-bottom:0">
 <div class="wrap"><p class="crumbs"><a href="{rel}index.html">Home</a> / <a href="{rel}collections.html">Collections</a> / <a href="{rel}collections/{c['slug']}.html">{c['name']}</a> / {p['name']}</p></div>
@@ -645,7 +659,7 @@ def build_quote():
     chips = "".join(f'<label class="chip"><input type="checkbox" name="services" value="{s}"><span>{s}</span></label>'
                     for s in ["Custom manufacturing","Private label","Sampling only","Bulk reorder","Design help"])
     return (head("Request a Quote | NTF Custom Sportswear",
-        "Tell NTF what you want made and get per-unit costing, fabric options and a lead time back within one working day.", rel)
+        "Tell NTF what you want made and get per-unit costing, fabric options and a lead time back within one working day.", rel, "quote.html")
     + header(rel, "quote.html")
     + f"""<section class="pagehead"><div class="wrap">
 <p class="crumbs"><a href="index.html">Home</a> / Request a quote</p>
@@ -702,7 +716,7 @@ def build_about():
              (I['globe'],"Grow with volume","Start at a handful of pieces to test the market, scale into container loads on the same patterns.")]
     f = "".join(f'<div class="feature reveal"><div class="ic">{i}</div><h3>{t}</h3><p>{d}</p></div>' for i, t, d in feats)
     return (head("About | NTF Custom Sportswear",
-        "NTF is a Sialkot-based manufacturer of custom martial arts, MMA and fitness apparel and training gear.", rel)
+        "NTF is a Sialkot-based manufacturer of custom martial arts, MMA and fitness apparel and training gear.", rel, "about.html")
     + header(rel, "about.html")
     + f"""<section class="pagehead"><div class="wrap">
 <p class="crumbs"><a href="index.html">Home</a> / About</p>
@@ -743,7 +757,7 @@ def build_process():
              ("06","Packing and freight","Poly-bagged, tagged and boxed your way, then shipped door to door by air or sea, our forwarder or yours.")]
     ls = "".join(f'<li><span class="num">{n}</span><div><b>{t}</b><p>{d}</p></div></li>' for n, t, d in steps)
     return (head("How We Work | NTF Custom Sportswear",
-        "From brief to bulk: how NTF quotes, samples, produces and ships custom sportswear orders.", rel)
+        "From brief to bulk: how NTF quotes, samples, produces and ships custom sportswear orders.", rel, "process.html")
     + header(rel, "process.html")
     + f"""<section class="pagehead"><div class="wrap">
 <p class="crumbs"><a href="index.html">Home</a> / Process</p>
@@ -774,7 +788,7 @@ def build_process():
 def build_contact():
     rel = ""
     return (head("Contact | NTF Custom Sportswear",
-        f"Contact NTF Sportswear. Call {PHONE} or email {EMAIL} for custom sportswear manufacturing.", rel)
+        f"Contact NTF Sportswear. Call {PHONE} or email {EMAIL} for custom sportswear manufacturing.", rel, "contact.html")
     + header(rel, "contact.html")
     + f"""<section class="pagehead"><div class="wrap">
 <p class="crumbs"><a href="index.html">Home</a> / Contact</p>
@@ -802,7 +816,7 @@ def build_contact():
 
 def build_404():
     rel = ""
-    return (head("Page not found | NTF Sportswear", "That page does not exist.", rel)
+    return (head("Page not found | NTF Sportswear", "That page does not exist.", rel, "404.html")
     + header(rel, "")
     + f"""<section class="hero"><div class="wrap center">
 <p class="badge">Error // 404</p>
