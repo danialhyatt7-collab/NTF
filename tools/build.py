@@ -189,7 +189,7 @@ def head(title, desc, rel):
 <link rel="preload" as="font" type="font/woff2" href="{rel}assets/fonts/inter-400-latin.woff2" crossorigin>
 <link rel="stylesheet" href="{rel}assets/css/fonts.css{fonts_v}">
 <link rel="stylesheet" href="{rel}assets/css/style.css{style_v}">
-<script>(function(){{var d=document.documentElement;try{{var t=localStorage.getItem('ntf-theme');if(!t)t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';d.setAttribute('data-theme',t);if(localStorage.getItem('ntf-announce')==='off')d.classList.add('announce-off');}}catch(e){{}}}})();</script>
+<script>(function(){{var d=document.documentElement;try{{var t=localStorage.getItem('ntf-theme');if(!t)t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';d.setAttribute('data-theme',t);}}catch(e){{}}}})();</script>
 </head>
 <body>
 <div class="progress"></div>
@@ -249,14 +249,11 @@ def header(rel, current):
 <a href="tel:{PHONE_TEL}">{PHONE}</a>
 <a href="mailto:{EMAIL}">{EMAIL}</a>
 </div>
-<button class="announce-close" data-announce-close aria-label="Dismiss announcements">
-<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
-</button>
 </div></div>
 <header class="site" data-header><div class="wrap nav">
 <a class="brand" href="{rel}index.html" aria-label="NTF Sportswear, home">
 <img class="brand-mark" src="{rel}assets/img/logo-green.svg" alt="" width="36" height="36">
-<span class="brand-type">NTF<span class="slash">//</span><span class="sub">Sportswear</span></span>
+<span class="brand-type"><b>NTF</b> <span class="sub">Sportswear</span></span>
 </a>
 <nav class="menu" aria-label="Main">{links}
 <a class="btn btn-primary btn-sm" href="{rel}quote.html">Request a Quote {I['arrow']}</a>
@@ -303,12 +300,13 @@ def footer(rel):
 
 <footer class="site"><div class="wrap">
 <div class="fgrid">
-<div>
-<a class="brand brand-stack" href="{rel}index.html" aria-label="NTF Sportswear, home">
-<img class="brand-mark light-only" src="{rel}assets/img/logo-black.svg" alt="" width="56" height="56">
-<img class="brand-mark dark-only" src="{rel}assets/img/logo-white.svg" alt="" width="56" height="56">
-<span class="brand-type"><span class="row">NTF<span class="slash">//</span></span><span class="sub">Sportswear</span></span></a>
-<p class="muted" style="margin-top:1.4rem;max-width:34ch;font-size:.9rem">Custom sportswear and combat gear manufactured in Sialkot, Pakistan for gyms, academies and apparel labels worldwide.</p>
+<div class="fbrand">
+<a class="brand" href="{rel}index.html" aria-label="NTF Sportswear, home">
+<img class="brand-mark light-only" src="{rel}assets/img/logo-black.svg" alt="" width="40" height="40">
+<img class="brand-mark dark-only" src="{rel}assets/img/logo-white.svg" alt="" width="40" height="40">
+<span class="brand-type"><b>NTF</b> <span class="sub">Sportswear</span></span></a>
+<p>Custom sportswear and combat gear, manufactured in Sialkot, Pakistan for gyms, academies and apparel labels worldwide.</p>
+<a class="btn btn-primary btn-sm" href="{rel}quote.html">Request a quote {I['arrow']}</a>
 </div>
 <div><h4>Collections</h4><ul>{cats}</ul></div>
 <div><h4>Company</h4><ul>
@@ -317,16 +315,17 @@ def footer(rel):
 <li><a href="{rel}collections.html">All collections</a></li>
 <li><a href="{rel}quote.html">Request a quote</a></li>
 </ul></div>
-<div><h4>Contact</h4><ul>
-<li><a href="tel:{PHONE_TEL}">{PHONE}</a></li>
-<li><a href="mailto:{EMAIL}">{EMAIL}</a></li>
-<li><a href="https://wa.me/{PHONE_WA}" target="_blank" rel="noopener">WhatsApp</a></li>
-<li class="muted">Sialkot, Punjab, Pakistan</li>
+<div><h4>Get in touch</h4>
+<ul class="fcontact">
+<li><span>Phone</span><a href="tel:{PHONE_TEL}">{PHONE}</a></li>
+<li><span>Email</span><a href="mailto:{EMAIL}">{EMAIL}</a></li>
+<li><span>WhatsApp</span><a href="https://wa.me/{PHONE_WA}" target="_blank" rel="noopener">Message us</a></li>
+<li><span>Address</span><span class="muted">Sialkot, Punjab, Pakistan</span></li>
 </ul></div>
 </div>
 <div class="legal">
 <span>&copy; <span id="year">2026</span> NTF Sportswear. All rights reserved.</span>
-<span class="status">[ Quote turnaround: <b>24h</b> ] [ Ships: <b>worldwide</b> ] [ MOQ from <b>5 pcs</b> ]</span>
+<span>Minimum order from 5 pieces &middot; Quotes answered within one working day &middot; Shipped worldwide</span>
 </div>
 </div></footer>
 

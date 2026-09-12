@@ -105,8 +105,6 @@ p{margin:0 0 1.1rem}
 .announce{background:#0c1420;color:#f4f6f9;font-size:.8rem;letter-spacing:.01em;overflow:hidden;
   transition:height .4s var(--ease),opacity .3s var(--ease)}
 [data-theme="dark"] .announce{background:var(--surface);color:var(--text-2);border-bottom:1px solid var(--line)}
-.announce-off .announce{display:none}
-.announce.closing{height:0!important;opacity:0}
 .announce .wrap{display:flex;align-items:center;gap:1.4rem;padding-block:.6rem}
 .announce a{color:inherit;border-bottom:1px solid transparent;transition:border-color .25s,color .25s}
 .announce a:hover{border-color:currentColor}
@@ -130,11 +128,6 @@ p{margin:0 0 1.1rem}
 .announce-item>a:hover svg{transform:translateX(3px)}
 
 .announce-meta{display:flex;gap:1.1rem;flex:none;opacity:.78}
-.announce-close{flex:none;width:22px;height:22px;display:grid;place-items:center;border:0;border-radius:50%;
-  background:transparent;color:inherit;opacity:.55;cursor:pointer;
-  transition:opacity .2s,background .2s,transform .3s var(--ease)}
-.announce-close:hover{opacity:1;background:rgba(255,255,255,.12);transform:rotate(90deg)}
-[data-theme="dark"] .announce-close:hover{background:var(--surface-2)}
 @media(max-width:760px){
   .announce-meta{display:none}
   .announce-item>a{display:none}      /* no room for the CTA; the message stays whole */
@@ -148,29 +141,17 @@ header.site{position:sticky;top:0;z-index:100;background:color-mix(in srgb,var(-
 header.site.scrolled{border-color:var(--line);box-shadow:0 4px 24px -18px rgba(12,20,32,.5)}
 .nav{display:flex;align-items:center;gap:1rem;height:var(--nav-h)}
 /* ---------- brand lockup ----------
-   One baseline, one optical grid: mark | NTF | // | SPORTSWEAR.
-   Sizes are driven by --lm (mark size) so every variant stays in proportion. */
-.brand{--lm:36px;display:inline-flex;align-items:center;gap:calc(var(--lm)*.34);text-decoration:none}
-.brand-mark{width:var(--lm);height:var(--lm);flex:none;display:block;transform-origin:50% 50%;
-  transition:transform .7s var(--ease)}
+   Mark + company name on one baseline. Sizes derive from --lm (mark size). */
+.brand{--lm:38px;display:inline-flex;align-items:center;gap:calc(var(--lm)*.32);text-decoration:none}
+.brand-mark{width:var(--lm);height:var(--lm);flex:none;display:block;transition:transform .7s var(--ease)}
 .brand:hover .brand-mark{transform:rotate(-18deg)}
-.brand-type{display:flex;align-items:baseline;font-family:var(--display);font-weight:800;
-  font-size:calc(var(--lm)*.58);line-height:1;letter-spacing:-.045em;color:var(--text);white-space:nowrap}
-.brand-type .slash{color:var(--brand);display:inline-block;margin:0 .02em 0 .04em;
-  transition:transform .45s var(--ease)}
-.brand:hover .brand-type .slash{transform:skewX(-14deg) translateX(1px)}
-.brand-type .sub{font-family:var(--body);font-weight:600;font-size:calc(var(--lm)*.205);
-  letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-left:.5em;
-  transition:color .3s}
-.brand:hover .brand-type .sub{color:var(--text-2)}
+.brand-type{display:flex;align-items:baseline;gap:.32em;font-family:var(--display);
+  font-size:calc(var(--lm)*.5);line-height:1;letter-spacing:-.03em;color:var(--text);white-space:nowrap}
+.brand-type b{font-weight:800}
+.brand-type .sub{font-weight:500;color:var(--text-2);transition:color .3s}
+.brand:hover .brand-type .sub{color:var(--text)}
 @media(max-width:560px){.brand{--lm:34px}.brand-type .sub{display:none}}
 
-/* stacked variant for the footer brand moment */
-.brand-stack{--lm:56px;flex-direction:column;align-items:flex-start;gap:1.1rem}
-.brand-stack .brand-type{flex-direction:column;align-items:flex-start;gap:.5rem;font-size:calc(var(--lm)*.86)}
-.brand-stack .brand-type .row{display:flex;align-items:baseline}
-.brand-stack .brand-type .sub{margin-left:0;font-size:calc(var(--lm)*.165);letter-spacing:.42em}
-@media(max-width:560px){.brand-stack{--lm:46px}.brand-stack .brand-type .sub{display:block}}
 .menu{display:flex;align-items:center;gap:.3rem;margin-left:auto}
 .menu>a{position:relative;padding:.5rem .8rem;border-radius:999px;font-size:.93rem;font-weight:500;color:var(--text-2);transition:color .25s,background .25s}
 .menu>a::after{content:"";position:absolute;left:50%;bottom:.28rem;height:2px;width:0;background:var(--brand);border-radius:2px;transform:translateX(-50%);transition:width .35s var(--ease)}
@@ -438,20 +419,32 @@ details .answer{padding:0 1.3rem 1.2rem;color:var(--text-2);font-size:.95rem}
 [data-theme="dark"] .cta .btn-ghost:hover{background:var(--surface-2);border-color:var(--brand);color:var(--brand-strong)}
 
 /* footer */
-footer.site{border-top:1px solid var(--line);background:var(--bg-alt);padding-block:3.2rem 1.6rem;font-size:.93rem}
-.fgrid{display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr;gap:2rem}
-@media(max-width:860px){.fgrid{grid-template-columns:1fr 1fr}}
-@media(max-width:540px){.fgrid{grid-template-columns:1fr}}
-footer.site h4{font-family:var(--display);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem}
-footer.site ul{list-style:none;margin:0;padding:0;display:grid;gap:.55rem}
-footer.site a{color:var(--text-2);transition:color .25s,transform .25s}
+footer.site{border-top:1px solid var(--line);background:var(--bg-alt);padding-block:3.4rem 1.6rem;font-size:.93rem}
+.fgrid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:2.6rem}
+@media(max-width:900px){.fgrid{grid-template-columns:1fr 1fr;gap:2.2rem}.fbrand{grid-column:span 2}}
+@media(max-width:560px){.fgrid{grid-template-columns:1fr}.fbrand{grid-column:span 1}}
+.fbrand .brand{--lm:40px}
+.fbrand p{color:var(--text-2);margin:1.1rem 0 1.4rem;max-width:38ch;font-size:.92rem}
+footer.site h4{font-family:var(--display);font-size:.95rem;font-weight:700;letter-spacing:-.01em;
+  color:var(--text);margin:0 0 1rem;padding-bottom:.7rem;border-bottom:1px solid var(--line)}
+footer.site ul{list-style:none;margin:0;padding:0;display:grid;gap:.6rem}
+footer.site a{color:var(--text-2);transition:color .25s}
 footer.site a:hover{color:var(--brand-strong)}
+/* the link colour above must not bleed into buttons or the brand lockup */
+footer.site .btn-primary,footer.site .btn-primary:hover{color:#fff}
+[data-theme="dark"] footer.site .btn-primary,[data-theme="dark"] footer.site .btn-primary:hover{color:#06210f}
+footer.site .brand-type b{color:var(--text)}
+footer.site .brand:hover .brand-type .sub{color:var(--text)}
+.fcontact li{display:grid;gap:.1rem}
+.fcontact span:first-child{font-size:.72rem;letter-spacing:.04em;color:var(--muted)}
+.fcontact a,.fcontact span:last-child{font-weight:500;color:var(--text)}
+.fcontact a:hover{color:var(--brand-strong)}
 footer.site .light-only{display:block}
-footer.site .brand-type{color:var(--text)}
 footer.site .dark-only{display:none}
 [data-theme="dark"] footer.site .light-only{display:none}
 [data-theme="dark"] footer.site .dark-only{display:block}
-.legal{border-top:1px solid var(--line);margin-top:2.6rem;padding-top:1.3rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;color:var(--muted);font-size:.82rem}
+.legal{border-top:1px solid var(--line);margin-top:2.8rem;padding-top:1.3rem;display:flex;
+  justify-content:space-between;gap:1rem;flex-wrap:wrap;color:var(--muted);font-size:.82rem}
 
 /* floating actions */
 .fab{position:fixed;right:18px;bottom:18px;z-index:90;display:flex;flex-direction:column;gap:.6rem}
