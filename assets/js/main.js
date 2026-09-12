@@ -143,13 +143,105 @@
     });
   }
 
+
+  /* ---------- size + quantity pickers ---------- */
+  function pickerState(scope) {
+    var sizes = Array.prototype.slice.call(scope.querySelectorAll('.size[aria-pressed="true"]'))
+      .map(function (b) { return b.dataset.size; });
+    var input = scope.querySelector('.qty-input');
+    var qty = input ? parseInt(input.value, 10) : NaN;
+    return { sizes: sizes, qty: isNaN(qty) ? null : qty };
+  }
+
+  function syncPicker(scope) {
+    var st = pickerState(scope);
+    var cta = scope.querySelector('[data-quote-cta]');
+    if (cta) {
+      var q = new URLSearchParams();
+      q.set('product', scope.dataset.product);
+      q.set('category', scope.dataset.category);
+      if (st.sizes.length) q.set('sizes', st.sizes.join(','));
+      if (st.qty) q.set('qty', st.qty);
+      cta.href = scope.dataset.quote + '?' + q.toString();
+    }
+    var summary = scope.querySelector('[data-picker-summary]');
+    if (summary) {
+      if (!st.sizes.length && !st.qty) {
+        summary.textContent = 'Pick your sizes and quantity, and they travel with your quote request.';
+      } else {
+        var parts = [];
+        parts.push(st.sizes.length ? st.sizes.join(', ') : 'all standard sizes');
+        parts.push((st.qty || scope.dataset.moq) + ' pcs');
+        summary.textContent = 'Quoting ' + parts.join(' \u00b7 ') + '.';
+      }
+    }
+  }
+
+  function clampQty(scope, flash) {
+    var input = scope.querySelector('.qty-input');
+    if (!input) return;
+    var min = parseInt(input.min, 10) || 1;
+    var v = parseInt(input.value, 10);
+    if (isNaN(v) || v < min) {
+      input.value = min;
+      var hint = scope.querySelector('.qty-min');
+      if (hint && flash && !reduced) {
+        hint.classList.remove('flash');
+        void hint.offsetWidth;
+        hint.classList.add('flash');
+      }
+    }
+  }
+
+  document.querySelectorAll('[data-picker]').forEach(function (scope) {
+    scope.addEventListener('click', function (e) {
+      var size = e.target.closest('.size');
+      if (size && !size.disabled) {
+        e.preventDefault();
+        size.setAttribute('aria-pressed', size.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
+        syncPicker(scope);
+        return;
+      }
+      var step = e.target.closest('.qty-step');
+      if (step) {
+        e.preventDefault();
+        var input = scope.querySelector('.qty-input');
+        if (!input) return;
+        var min = parseInt(input.min, 10) || 1;
+        var inc = parseInt(scope.dataset.stepSize, 10) || 1;
+        var next = (parseInt(input.value, 10) || min) + parseInt(step.dataset.step, 10) * inc;
+        input.value = Math.max(min, next);
+        clampQty(scope, parseInt(step.dataset.step, 10) < 0);
+        syncPicker(scope);
+      }
+    });
+    var input = scope.querySelector('.qty-input');
+    if (input) {
+      input.addEventListener('input', function () { syncPicker(scope); });
+      input.addEventListener('change', function () { clampQty(scope, true); syncPicker(scope); });
+      input.addEventListener('blur', function () { clampQty(scope, true); syncPicker(scope); });
+    }
+    syncPicker(scope);
+  });
+
   /* ---------- quote form ---------- */
   var form = document.getElementById('quote-form');
   if (form) {
     var q = new URLSearchParams(location.search);
     var product = q.get('product'), category = q.get('category');
+    var sizes = q.get('sizes'), qty = q.get('qty');
     var details = form.querySelector('[name=details]');
-    if (product && details && !details.value) details.value = 'Product of interest: ' + product + '\n\n';
+    if (details && !details.value) {
+      var lines = [];
+      if (product) lines.push('Product of interest: ' + product);
+      if (sizes) lines.push('Sizes: ' + sizes.split(',').join(', '));
+      if (qty) lines.push('Quantity: ' + qty + ' pcs');
+      if (lines.length) details.value = lines.join('\n') + '\n\n';
+    }
+    if (qty) {
+      var qtyField = form.querySelector('[name=quantity]');
+      if (qtyField && !qtyField.value) qtyField.value = qty;
+    }
     if (category) {
       var sel = form.querySelector('[name=category]');
       if (sel) Array.prototype.forEach.call(sel.options, function (o) { if (o.value === category) sel.value = category; });

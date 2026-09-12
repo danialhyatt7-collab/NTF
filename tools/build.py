@@ -268,18 +268,43 @@ def footer(rel):
 </html>
 """
 
-def sizes_html(p):
+def size_buttons(p, limit=None, name_prefix=""):
+    """Size chips as real toggle buttons, so a buyer can mark the size run."""
+    sizes = p["sizes"] if limit is None else p["sizes"][:limit]
     out = []
-    for sz in p["sizes"][:7]:
-        cls = ' class="out"' if sz in p["out"] else ''
-        out.append("<i%s>%s</i>" % (cls, sz))
+    for sz in sizes:
+        disabled = ' disabled aria-disabled="true"' if sz in p["out"] else ''
+        out.append(
+            '<button type="button" class="size" data-size="%s" aria-pressed="false"%s>%s</button>'
+            % (sz, disabled, sz))
     return "".join(out)
+
+def qty_step(moq):
+    """Increment the +/- buttons move by: whole cartons, not single pieces."""
+    if moq <= 10:
+        return moq
+    return 10 if moq < 40 else 25
+
+def qty_block(p, ident):
+    """Quantity stepper, floored at the product's minimum order."""
+    return f"""<div class="qty">
+<b>Qty //</b>
+<div class="qty-field">
+<button type="button" class="qty-step" data-step="-1" aria-label="Decrease quantity">&minus;</button>
+<input class="qty-input" id="qty-{ident}" type="number" inputmode="numeric" step="1"
+ min="{p['moq']}" value="{p['moq']}" aria-label="Quantity of {p['name']} (minimum {p['moq']})">
+<button type="button" class="qty-step" data-step="1" aria-label="Increase quantity">+</button>
+</div>
+<span class="qty-min">min {p['moq']}</span>
+</div>"""
 
 def pcard(c, p, rel):
     s = slugify(p["name"])
+    ident = s + "-" + c["slug"]
     tags = "".join('<span%s>%s</span>' % (' class="brandtag"' if i == 0 else '', t)
                    for i, t in enumerate(p["tags"]))
-    return f"""<article class="pcard reveal">
+    return f"""<article class="pcard reveal" data-picker
+ data-product="{p['name']}" data-category="{c['slug']}" data-quote="{rel}quote.html" data-moq="{p['moq']}" data-step-size="{qty_step(p['moq'])}">
 <a class="pcard-media" href="{rel}products/{s}.html" aria-label="{p['name']}">
 <div class="tags">{tags}</div><div class="ticks"><i></i><i></i><i></i><i></i></div>
 {img(rel, p['img'], p['name'] + ' - ' + c['name'] + ' by NTF')}
@@ -289,8 +314,9 @@ def pcard(c, p, rel):
 <div class="pcard-head"><h3><a href="{rel}products/{s}.html">{p['name']}</a></h3><span class="moq">MOQ {p['moq']}</span></div>
 <p class="pcard-sub">{p['sub']}</p>
 <div class="pcard-divider"></div>
-<div class="sizes"><b>Size //</b>{sizes_html(p)}</div>
-<a class="pcard-cta" href="{rel}quote.html?product={p['name'].replace(' ', '%20')}&amp;category={c['slug']}">Request a quote {I['arrow']}</a>
+<div class="sizes" role="group" aria-label="Select sizes for {p['name']}"><b>Size //</b>{size_buttons(p, 7)}</div>
+{qty_block(p, ident)}
+<a class="pcard-cta" data-quote-cta href="{rel}quote.html?product={p['name'].replace(' ', '%20')}&amp;category={c['slug']}">Request a quote {I['arrow']}</a>
 </div></article>"""
 
 def write(path, html):
@@ -509,16 +535,30 @@ def build_product(c, p):
 <h1 style="font-size:clamp(2rem,4vw,2.9rem);margin:.4rem 0 .8rem">{p['name']}</h1>
 <div class="tags tags-static">{tags}</div>
 <p class="lead">{p['desc']}</p>
+
+<div class="picker" data-picker data-product="{p['name']}" data-category="{c['slug']}"
+ data-quote="{rel}quote.html" data-moq="{p['moq']}" data-step-size="{qty_step(p['moq'])}">
+<div class="picker-row">
+<span class="picker-label">Sizes</span>
+<div class="sizes sizes-lg" role="group" aria-label="Select sizes for {p['name']}">{size_buttons(p)}</div>
+</div>
+<div class="picker-row">
+<span class="picker-label">Quantity</span>
+{qty_block(p, s)}
+</div>
+<p class="picker-summary" data-picker-summary aria-live="polite">Pick your sizes and quantity, and they travel with your quote request.</p>
+<div class="hero-cta" style="margin-top:1.2rem">
+<a class="btn btn-primary btn-lg" data-quote-cta data-magnetic href="{rel}quote.html?product={p['name'].replace(' ', '%20')}&amp;category={c['slug']}">Request a quote {I['arrow']}</a>
+<a class="btn btn-ghost btn-lg" href="tel:{PHONE_TEL}">Call {PHONE}</a>
+</div>
+</div>
+
 <table class="spec-table"><tbody>{rows}
 <tr><th>Standard sizes</th><td>{sizes}</td></tr>
 <tr><th>Minimum order</th><td>{p['moq']} pieces per design</td></tr>
 <tr><th>Sampling</th><td>7-10 working days, revised until sign-off</td></tr>
 <tr><th>Bulk lead time</th><td>3-4 weeks after sample approval</td></tr>
 </tbody></table>
-<div class="hero-cta">
-<a class="btn btn-primary btn-lg" href="{rel}quote.html?product={p['name'].replace(' ', '%20')}&amp;category={c['slug']}" data-magnetic>Request a quote {I['arrow']}</a>
-<a class="btn btn-ghost btn-lg" href="tel:{PHONE_TEL}">Call {PHONE}</a>
-</div>
 </div>
 </div></section>
 <section class="section-alt"><div class="wrap">
