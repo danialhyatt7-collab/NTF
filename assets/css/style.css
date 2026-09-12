@@ -101,10 +101,11 @@ p{margin:0 0 1.1rem}
 /* ---------- scroll progress ---------- */
 .progress{position:fixed;top:0;left:0;height:2px;width:100%;transform:scaleX(0);transform-origin:0 50%;background:var(--brand);z-index:200}
 
-/* ---------- announcement bar (rotating, dismissible) ---------- */
-.announce{background:#0c1420;color:#f4f6f9;font-size:.8rem;letter-spacing:.01em;overflow:hidden;
-  transition:height .4s var(--ease),opacity .3s var(--ease)}
-[data-theme="dark"] .announce{background:var(--surface);color:var(--text-2);border-bottom:1px solid var(--line)}
+/* ---------- announcement bar (rotating) ----------
+   Driven entirely by theme tokens, so it follows light and dark. */
+.announce{background:var(--bg-alt);color:var(--text-2);border-bottom:1px solid var(--line);
+  font-size:.8rem;letter-spacing:.01em;overflow:hidden;
+  transition:background .4s var(--ease),color .4s var(--ease)}
 .announce .wrap{display:flex;align-items:center;gap:1.4rem;padding-block:.6rem}
 .announce a{color:inherit;border-bottom:1px solid transparent;transition:border-color .25s,color .25s}
 .announce a:hover{border-color:currentColor}
@@ -120,14 +121,15 @@ p{margin:0 0 1.1rem}
 .announce-item.is-on{opacity:1;transform:none;pointer-events:auto}
 .announce-item.is-out{opacity:0;transform:translateY(-8px)}
 .announce-item>span{overflow:hidden;text-overflow:ellipsis}
-.announce-item b{font-weight:700;color:#fff}
-[data-theme="dark"] .announce-item b{color:var(--text)}
+.announce-item b{font-weight:700;color:var(--text)}
 .announce-item>a{display:inline-flex;align-items:center;gap:.3rem;flex:none;color:var(--brand-strong);
   font-weight:600;border-bottom:0}
 .announce-item>a svg{transition:transform .3s var(--ease)}
 .announce-item>a:hover svg{transform:translateX(3px)}
 
-.announce-meta{display:flex;gap:1.1rem;flex:none;opacity:.78}
+.announce-meta{display:flex;gap:1.1rem;flex:none}
+.announce-meta a{color:var(--text-2)}
+.announce-meta a:hover{color:var(--text)}
 @media(max-width:760px){
   .announce-meta{display:none}
   .announce-item>a{display:none}      /* no room for the CTA; the message stays whole */
