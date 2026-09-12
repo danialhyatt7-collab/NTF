@@ -7,7 +7,7 @@ dark-mode switch.
 
 Run:  python3 tools/build.py
 """
-import os, re
+import os, re, json
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -35,6 +35,7 @@ I = {  # inline icons (stroke = currentColor)
 "pin": '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>',
 "clock": '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
 "wa": '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.2 14.1c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .1-1.7-.1a13 13 0 0 1-5.6-4.4c-.6-.9-1-1.9-1-2.8 0-.9.5-1.4.7-1.6.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.4.5c-.1.2-.3.3-.1.6a9 9 0 0 0 3.9 3.2c.3.1.5.1.6-.1l.7-.8c.2-.2.4-.2.6-.1l1.8.9c.3.1.4.2.5.3v1z"/></svg>',
+"search": '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>',
 "up": '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>',
 "moon": '<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>',
 "sun": '<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>',
@@ -195,31 +196,81 @@ def head(title, desc, rel):
 """
 
 def header(rel, current):
-    links = "".join('<a href="%s%s"%s>%s</a>' % (rel, h, ' aria-current="page"' if h == current else '', n)
-                    for n, h in NAV)
+    links = []
+    for n, h in NAV:
+        cur = ' aria-current="page"' if h == current else ''
+        if h == "collections.html":
+            links.append(
+                '<a class="mega-trigger" href="%s%s"%s aria-expanded="false" aria-controls="mega-collections">'
+                '%s<svg class="caret" width="9" height="6" viewBox="0 0 9 6" fill="none" aria-hidden="true">'
+                '<path d="M1 1l3.5 3.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>'
+                % (rel, h, cur, n))
+        else:
+            links.append('<a href="%s%s"%s>%s</a>' % (rel, h, cur, n))
+    links = "".join(links)
+
+    # mega panel: a directory of every real destination on the site
+    cols = ""
+    cats = "".join('<li><a href="%scollections/%s.html"><span>%s</span><em>%d products</em></a></li>'
+                   % (rel, c["slug"], c["name"], len(c["products"])) for c in CATEGORIES)
+    picks = "".join('<li><a href="%sproducts/%s.html"><span>%s</span><em>%s</em></a></li>'
+                    % (rel, slugify(c["products"][0]["name"]), c["products"][0]["name"], c["name"])
+                    for c in CATEGORIES)
+    company = "".join('<li><a href="%s%s"><span>%s</span></a></li>' % (rel, h, n) for n, h in
+                      [("How we work", "process.html"), ("About NTF", "about.html"),
+                       ("Request a quote", "quote.html"), ("Contact", "contact.html")])
+    cols = f"""<div class="mega-col"><p class="mega-label">By collection</p><ul>{cats}</ul></div>
+<div class="mega-col mega-col-stack"><p class="mega-label">Featured products</p><ul>{picks}</ul></div>
+<div class="mega-col"><p class="mega-label">Company</p><ul>{company}</ul></div>
+<a class="mega-feature" href="{rel}quote.html">
+{img(rel, 'ma-hero', 'Custom sportswear manufactured by NTF')}
+<div class="mega-feature-body"><p class="mega-label">Start here</p>
+<b>25 products across 5 collections</b>
+<span class="arrow-link">Request a quote <span>{I['arrow']}</span></span></div></a>"""
+
     return f"""<div class="announce"><div class="wrap">
 <span><span class="dot"></span> Custom manufacturing from low minimums</span>
 <a href="tel:{PHONE_TEL}">{PHONE}</a>
 <a href="mailto:{EMAIL}">{EMAIL}</a>
 </div></div>
-<header class="site"><div class="wrap nav">
+<header class="site" data-header><div class="wrap nav">
 <a class="brand" href="{rel}index.html" aria-label="NTF Sportswear, home">
 <img class="brand-mark" src="{rel}assets/img/logo-green.svg" alt="" width="36" height="36">
 <span class="brand-type">NTF<span class="slash">//</span><span class="sub">Sportswear</span></span>
 </a>
-<nav class="menu">{links}
+<nav class="menu" aria-label="Main">{links}
 <a class="btn btn-primary btn-sm" href="{rel}quote.html">Request a Quote {I['arrow']}</a>
 </nav>
 <div class="nav-actions">
+<button class="icon-btn" data-search-open aria-label="Search products">{I['search']}</button>
 <button class="icon-btn" data-theme-toggle aria-label="Switch to dark mode">{I['moon']}{I['sun']}</button>
 <a class="btn btn-primary btn-sm" href="{rel}quote.html" data-magnetic>Request a Quote {I['arrow']}</a>
 <button class="burger" aria-label="Menu" aria-expanded="false"><i></i><i></i><i></i></button>
 </div>
-</div></header>
+</div>
+<div class="mega" id="mega-collections" hidden>
+<div class="wrap mega-grid">{cols}</div>
+<div class="mega-foot"><div class="wrap">
+<span class="mono">Made to order &middot; MOQ from 5 pcs &middot; Shipped worldwide</span>
+<a class="arrow-link" href="{rel}collections.html">View all collections <span>{I['arrow']}</span></a>
+</div></div>
+</div>
+</header>
+
+<div class="search" data-search data-root="{rel}" hidden>
+<div class="search-panel" role="dialog" aria-modal="true" aria-label="Search">
+<div class="search-bar">{I['search']}
+<input type="search" data-search-input placeholder="Search products and collections" aria-label="Search products and collections" autocomplete="off">
+<button class="search-close" data-search-close aria-label="Close search">Esc</button>
+</div>
+<div class="search-body"><ul class="search-results" data-search-results></ul>
+<p class="search-empty" data-search-empty hidden>No matches. Try &ldquo;gi&rdquo;, &ldquo;rash guard&rdquo; or &ldquo;straps&rdquo;.</p></div>
+</div></div>
 """
 
 def footer(rel):
     js_v = ver("assets/js/main.js")
+    idx_v = ver("assets/js/search-index.js")
     cats = "".join(f'<li><a href="{rel}collections/{c["slug"]}.html">{c["name"]}</a></li>' for c in CATEGORIES)
     return f"""<section><div class="wrap"><div class="cta reveal">
 <p class="mono" style="color:inherit;opacity:.7">[ Next step ]</p>
@@ -263,6 +314,7 @@ def footer(rel):
 <button class="top" aria-label="Back to top">{I['up']}</button>
 <a class="wa" href="https://wa.me/{PHONE_WA}" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">{I['wa']}</a>
 </div>
+<script src="{rel}assets/js/search-index.js{idx_v}"></script>
 <script src="{rel}assets/js/main.js{js_v}"></script>
 </body>
 </html>
@@ -741,7 +793,27 @@ def build_404():
 </div></section>
 """ + footer(rel))
 
+def build_search_index():
+    """Flat index consumed by the header search. Root-relative URLs so one
+    file serves every page depth."""
+    items = []
+    for c in CATEGORIES:
+        items.append({"t": c["name"], "s": c["tag"] + " collection", "u": "collections/%s.html" % c["slug"],
+                      "k": (c["name"] + " " + c["tag"] + " " + c["blurb"]).lower()})
+        for p in c["products"]:
+            items.append({"t": p["name"], "s": c["name"], "u": "products/%s.html" % slugify(p["name"]),
+                          "k": (p["name"] + " " + c["name"] + " " + p["sub"] + " " +
+                                " ".join(p["tags"]) + " " + p["desc"]).lower()})
+    for name, href, desc in [("Request a quote", "quote.html", "Costing in 24 hours"),
+                             ("How we work", "process.html", "Brief to bulk"),
+                             ("About NTF", "about.html", "Sialkot manufacturer"),
+                             ("Contact", "contact.html", "Phone, email and WhatsApp"),
+                             ("All collections", "collections.html", "Five ranges")]:
+        items.append({"t": name, "s": desc, "u": href, "k": (name + " " + desc).lower()})
+    return "window.NTF_INDEX=" + json.dumps(items, separators=(",", ":")) + ";\n"
+
 def main():
+    write("assets/js/search-index.js", build_search_index())
     write("index.html", build_home())
     write("collections.html", build_collections())
     write("quote.html", build_quote())
