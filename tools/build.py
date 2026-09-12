@@ -189,7 +189,7 @@ def head(title, desc, rel):
 <link rel="preload" as="font" type="font/woff2" href="{rel}assets/fonts/inter-400-latin.woff2" crossorigin>
 <link rel="stylesheet" href="{rel}assets/css/fonts.css{fonts_v}">
 <link rel="stylesheet" href="{rel}assets/css/style.css{style_v}">
-<script>(function(){{try{{var t=localStorage.getItem('ntf-theme');if(!t)t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}}catch(e){{}}}})();</script>
+<script>(function(){{var d=document.documentElement;try{{var t=localStorage.getItem('ntf-theme');if(!t)t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';d.setAttribute('data-theme',t);if(localStorage.getItem('ntf-announce')==='off')d.classList.add('announce-off');}}catch(e){{}}}})();</script>
 </head>
 <body>
 <div class="progress"></div>
@@ -228,10 +228,30 @@ def header(rel, current):
 <b>25 products across 5 collections</b>
 <span class="arrow-link">Request a quote <span>{I['arrow']}</span></span></div></a>"""
 
-    return f"""<div class="announce"><div class="wrap">
-<span><span class="dot"></span> Custom manufacturing from low minimums</span>
+    # kept short so each line fits a phone without truncating
+    notes = [
+        ("Low minimums &mdash; from <b>5 pcs</b> per design", "Browse collections", rel + "collections.html"),
+        ("Costing back <b>within one working day</b>", "Request a quote", rel + "quote.html"),
+        ("Samples in <b>7 to 10 days</b>, then bulk", "How we work", rel + "process.html"),
+        ("Shipped <b>worldwide</b>, by air or sea", "Talk to us", rel + "contact.html"),
+    ]
+    items = "".join(
+        '<p class="announce-item%s"><span class="dot"></span><span>%s</span>'
+        '<a href="%s">%s <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+        'stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+        '<path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>'
+        % (" is-on" if i == 0 else "", msg, href, cta)
+        for i, (msg, cta, href) in enumerate(notes))
+
+    return f"""<div class="announce" data-announce><div class="wrap">
+<div class="announce-rotator" data-announce-rotator aria-live="polite" aria-atomic="true">{items}</div>
+<div class="announce-meta">
 <a href="tel:{PHONE_TEL}">{PHONE}</a>
 <a href="mailto:{EMAIL}">{EMAIL}</a>
+</div>
+<button class="announce-close" data-announce-close aria-label="Dismiss announcements">
+<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+</button>
 </div></div>
 <header class="site" data-header><div class="wrap nav">
 <a class="brand" href="{rel}index.html" aria-label="NTF Sportswear, home">

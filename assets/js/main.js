@@ -37,6 +37,45 @@
   }
 
 
+
+  /* ---------- announcement bar ---------- */
+  var announce = document.querySelector('[data-announce]');
+  if (announce) {
+    var items = announce.querySelectorAll('.announce-item');
+    var closeBtn = announce.querySelector('[data-announce-close]');
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function () {
+        announce.style.height = announce.offsetHeight + 'px';
+        void announce.offsetWidth;
+        announce.classList.add('closing');
+        try { localStorage.setItem('ntf-announce', 'off'); } catch (e) {}
+        setTimeout(function () { document.documentElement.classList.add('announce-off'); }, 420);
+      });
+    }
+
+    if (items.length > 1 && !reduced) {
+      var at = 0, paused = false, timer;
+      var advance = function () {
+        if (paused) return;
+        var current = items[at];
+        at = (at + 1) % items.length;
+        current.classList.remove('is-on');
+        current.classList.add('is-out');
+        items[at].classList.add('is-on');
+        setTimeout(function () { current.classList.remove('is-out'); }, 500);
+      };
+      timer = setInterval(advance, 5200);
+      announce.addEventListener('mouseenter', function () { paused = true; });
+      announce.addEventListener('mouseleave', function () { paused = false; });
+      announce.addEventListener('focusin', function () { paused = true; });
+      announce.addEventListener('focusout', function () { paused = false; });
+      document.addEventListener('visibilitychange', function () {
+        paused = document.hidden;
+      });
+    }
+  }
+
   /* ---------- mega panel ---------- */
   var mega = document.getElementById('mega-collections');
   var trigger = document.querySelector('.mega-trigger');

@@ -13,15 +13,20 @@
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/plus-jakarta-sans-800-latin.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-400-latin.woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/fonts.css?v=1d04b4e0">
-<link rel="stylesheet" href="assets/css/style.css?v=a27df13a">
-<script>(function(){try{var t=localStorage.getItem('ntf-theme');if(!t)t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<link rel="stylesheet" href="assets/css/style.css?v=3e5bb104">
+<script>(function(){var d=document.documentElement;try{var t=localStorage.getItem('ntf-theme');if(!t)t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';d.setAttribute('data-theme',t);if(localStorage.getItem('ntf-announce')==='off')d.classList.add('announce-off');}catch(e){}})();</script>
 </head>
 <body>
 <div class="progress"></div>
-<div class="announce"><div class="wrap">
-<span><span class="dot"></span> Custom manufacturing from low minimums</span>
+<div class="announce" data-announce><div class="wrap">
+<div class="announce-rotator" data-announce-rotator aria-live="polite" aria-atomic="true"><p class="announce-item is-on"><span class="dot"></span><span>Low minimums &mdash; from <b>5 pcs</b> per design</span><a href="collections.html">Browse collections <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p><p class="announce-item"><span class="dot"></span><span>Costing back <b>within one working day</b></span><a href="quote.html">Request a quote <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p><p class="announce-item"><span class="dot"></span><span>Samples in <b>7 to 10 days</b>, then bulk</span><a href="process.html">How we work <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p><p class="announce-item"><span class="dot"></span><span>Shipped <b>worldwide</b>, by air or sea</span><a href="contact.html">Talk to us <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p></div>
+<div class="announce-meta">
 <a href="tel:+923338686122">+92 333 8686122</a>
 <a href="mailto:support@ntf.com.pk">support@ntf.com.pk</a>
+</div>
+<button class="announce-close" data-announce-close aria-label="Dismiss announcements">
+<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+</button>
 </div></div>
 <header class="site" data-header><div class="wrap nav">
 <a class="brand" href="index.html" aria-label="NTF Sportswear, home">
@@ -133,6 +138,6 @@
 <a class="wa" href="https://wa.me/923338686122" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.2 14.1c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .1-1.7-.1a13 13 0 0 1-5.6-4.4c-.6-.9-1-1.9-1-2.8 0-.9.5-1.4.7-1.6.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.4.5c-.1.2-.3.3-.1.6a9 9 0 0 0 3.9 3.2c.3.1.5.1.6-.1l.7-.8c.2-.2.4-.2.6-.1l1.8.9c.3.1.4.2.5.3v1z"/></svg></a>
 </div>
 <script src="assets/js/search-index.js?v=17461aba"></script>
-<script src="assets/js/main.js?v=649ae7b3"></script>
+<script src="assets/js/main.js?v=6e13c448"></script>
 </body>
 </html>
