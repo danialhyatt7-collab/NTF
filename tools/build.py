@@ -10,6 +10,19 @@ Run:  python3 tools/build.py
 import os, re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+def ver(relpath):
+    """Cache-busting query built from the asset's content hash.
+
+    Without it a browser can hold a stale stylesheet against fresh HTML,
+    which silently breaks the theming and layout that CSS carries."""
+    import hashlib
+    full = os.path.join(ROOT, relpath)
+    try:
+        return "?v=" + hashlib.md5(open(full, "rb").read()).hexdigest()[:8]
+    except OSError:
+        return ""
+
 PHONE = "+92 333 8686122"
 PHONE_TEL = "+923338686122"
 PHONE_WA = "923338686122"
@@ -157,6 +170,8 @@ NAV = [("Home","index.html"),("Collections","collections.html"),("Process","proc
        ("About","about.html"),("Contact","contact.html")]
 
 def head(title, desc, rel):
+    style_v = ver("assets/css/style.css")
+    fonts_v = ver("assets/css/fonts.css")
     return f"""<!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
@@ -171,8 +186,8 @@ def head(title, desc, rel):
 <link rel="icon" href="{rel}assets/img/logo-green.svg" type="image/svg+xml">
 <link rel="preload" as="font" type="font/woff2" href="{rel}assets/fonts/plus-jakarta-sans-800-latin.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="{rel}assets/fonts/inter-400-latin.woff2" crossorigin>
-<link rel="stylesheet" href="{rel}assets/css/fonts.css">
-<link rel="stylesheet" href="{rel}assets/css/style.css">
+<link rel="stylesheet" href="{rel}assets/css/fonts.css{fonts_v}">
+<link rel="stylesheet" href="{rel}assets/css/style.css{style_v}">
 <script>(function(){{try{{var t=localStorage.getItem('ntf-theme');if(!t)t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}}catch(e){{}}}})();</script>
 </head>
 <body>
@@ -204,6 +219,7 @@ def header(rel, current):
 """
 
 def footer(rel):
+    js_v = ver("assets/js/main.js")
     cats = "".join(f'<li><a href="{rel}collections/{c["slug"]}.html">{c["name"]}</a></li>' for c in CATEGORIES)
     return f"""<section><div class="wrap"><div class="cta reveal">
 <p class="mono" style="color:inherit;opacity:.7">[ Next step ]</p>
@@ -247,7 +263,7 @@ def footer(rel):
 <button class="top" aria-label="Back to top">{I['up']}</button>
 <a class="wa" href="https://wa.me/{PHONE_WA}" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">{I['wa']}</a>
 </div>
-<script src="{rel}assets/js/main.js"></script>
+<script src="{rel}assets/js/main.js{js_v}"></script>
 </body>
 </html>
 """
