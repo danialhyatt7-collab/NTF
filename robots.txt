@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://danialhyatt7-collab.github.io/NTF/sitemap.xml
