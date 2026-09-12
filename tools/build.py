@@ -188,9 +188,9 @@ def header(rel, current):
 <a href="mailto:{EMAIL}">{EMAIL}</a>
 </div></div>
 <header class="site"><div class="wrap nav">
-<a class="brand" href="{rel}index.html">
-<img src="{rel}assets/img/logo-green.svg" alt="" width="36" height="36">
-<span class="wordmark">NTF<span class="slash">//</span><small>Sportswear</small></span>
+<a class="brand" href="{rel}index.html" aria-label="NTF Sportswear, home">
+<img class="brand-mark" src="{rel}assets/img/logo-green.svg" alt="" width="36" height="36">
+<span class="brand-type">NTF<span class="slash">//</span><span class="sub">Sportswear</span></span>
 </a>
 <nav class="menu">{links}
 <a class="btn btn-primary btn-sm" href="{rel}quote.html">Request a Quote {I['arrow']}</a>
@@ -217,11 +217,11 @@ def footer(rel):
 <footer class="site"><div class="wrap">
 <div class="fgrid">
 <div>
-<a class="brand" href="{rel}index.html">
-<img class="light-only" src="{rel}assets/img/logo-black.svg" alt="" width="36" height="36">
-<img class="dark-only" src="{rel}assets/img/logo-white.svg" alt="" width="36" height="36">
-<span class="wordmark">NTF<span class="slash">//</span><small>Sportswear</small></span></a>
-<p class="muted" style="margin-top:1rem;max-width:34ch;font-size:.9rem">Custom sportswear and combat gear manufactured in Sialkot, Pakistan for gyms, academies and apparel labels worldwide.</p>
+<a class="brand brand-stack" href="{rel}index.html" aria-label="NTF Sportswear, home">
+<img class="brand-mark light-only" src="{rel}assets/img/logo-black.svg" alt="" width="56" height="56">
+<img class="brand-mark dark-only" src="{rel}assets/img/logo-white.svg" alt="" width="56" height="56">
+<span class="brand-type"><span class="row">NTF<span class="slash">//</span></span><span class="sub">Sportswear</span></span></a>
+<p class="muted" style="margin-top:1.4rem;max-width:34ch;font-size:.9rem">Custom sportswear and combat gear manufactured in Sialkot, Pakistan for gyms, academies and apparel labels worldwide.</p>
 </div>
 <div><h4>Collections</h4><ul>{cats}</ul></div>
 <div><h4>Company</h4><ul>
