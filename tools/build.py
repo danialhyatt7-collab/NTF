@@ -440,8 +440,7 @@ def build_home():
     + f"""<section class="hero"><div class="wrap hero-grid">
 <div>
 <p class="badge fade-up">Custom Sportswear // Sialkot, PK</p>
-<h1 class="fade-up d1">Your brand,<br>built seam<br><span class="accent">by seam
-<svg viewBox="0 0 300 12" preserveAspectRatio="none" aria-hidden="true"><path d="M3 8C60 3 150 2 297 6"/></svg></span></h1>
+<h1 class="fade-up d1">Your brand,<br>built seam<br><span class="accent">by seam</span></h1>
 <p class="lead fade-up d2" style="max-width:52ch">NTF manufactures custom martial arts uniforms, MMA fight wear, grappling dummies, gym apparel and lifting support. Cut, stitched and branded to your spec. Low minimums, real samples, shipped worldwide.</p>
 <div class="hero-specs fade-up d3">
 <span><b>5 PCS</b> minimum order</span>

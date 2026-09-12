@@ -194,10 +194,21 @@ header.site.scrolled{border-color:var(--line);box-shadow:0 4px 24px -18px rgba(1
 .hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(2rem,5vw,4rem);align-items:center}
 @media(max-width:940px){.hero-grid{grid-template-columns:1fr}}
 .hero h1{margin-bottom:1.4rem}
-.hero h1 .accent{color:var(--brand-strong);position:relative;white-space:nowrap}
-.hero h1 .accent svg{position:absolute;left:0;right:0;bottom:-.18em;width:100%;height:.3em;overflow:visible}
-.hero h1 .accent path{stroke:var(--brand);stroke-width:5;opacity:.9;fill:none;stroke-linecap:round;stroke-dasharray:320;stroke-dashoffset:320;animation:draw 1.1s var(--ease) .9s forwards}
-@keyframes draw{to{stroke-dashoffset:0}}
+/* Underlined with the native decoration rather than a drawn SVG: skip-ink
+   notches the rule around the y descender automatically, at any size. */
+.hero h1 .accent{
+  color:var(--brand-strong);white-space:nowrap;
+  text-decoration-line:underline;
+  text-decoration-color:transparent;
+  text-decoration-thickness:.085em;
+  text-underline-offset:.15em;
+  text-decoration-skip-ink:auto;
+  animation:underlineIn .75s var(--ease) .85s forwards;
+}
+@keyframes underlineIn{
+  from{text-decoration-color:transparent;text-underline-offset:.26em}
+  to{text-decoration-color:var(--brand);text-underline-offset:.15em}
+}
 .hero-cta{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1.8rem}
 .hero-meta{display:flex;gap:1.8rem;flex-wrap:wrap;margin-top:2.6rem;padding-top:1.6rem;border-top:1px solid var(--line)}
 .hero-meta b{display:block;font-family:var(--display);font-size:1.9rem;letter-spacing:-.04em;line-height:1}
