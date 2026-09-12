@@ -172,6 +172,7 @@ NAV = [("Home","index.html"),("Collections","collections.html"),("Process","proc
        ("About","about.html"),("Contact","contact.html")]
 
 def head(title, desc, rel, page=""):
+    canonical = "" if page == "index.html" else page
     style_v = ver("assets/css/style.css")
     fonts_v = ver("assets/css/fonts.css")
     return f"""<!DOCTYPE html>
@@ -181,12 +182,13 @@ def head(title, desc, rel, page=""):
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{title}</title>
 <meta name="description" content="{desc}">
+<link rel="canonical" href="{SITE}{canonical}">
 <meta property="og:site_name" content="NTF Sportswear">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
-<meta property="og:url" content="{SITE}{page}">
+<meta property="og:url" content="{SITE}{canonical}">
 <meta property="og:image" content="{SITE}assets/img/og-cover.jpg">
 <meta property="og:image:secure_url" content="{SITE}assets/img/og-cover.jpg">
 <meta property="og:image:type" content="image/jpeg">
