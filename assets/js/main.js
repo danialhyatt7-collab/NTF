@@ -106,7 +106,7 @@
     var input = search.querySelector('[data-search-input]');
     var list = search.querySelector('[data-search-results]');
     var empty = search.querySelector('[data-search-empty]');
-    var root = search.dataset.root || '';
+    var searchRoot = search.dataset.root || '';
     var cursor = -1;
 
     function esc(str) { return str.replace(/[&<>"]/g, function (c) {
@@ -131,7 +131,7 @@
       hits = hits.slice(0, 8);
       cursor = -1;
       list.innerHTML = hits.map(function (it) {
-        return '<li><a href="' + root + it.u + '"><span><b>' + highlight(it.t, query) +
+        return '<li><a href="' + searchRoot + it.u + '"><span><b>' + highlight(it.t, query) +
                '</b></span><em>' + esc(it.s) + '</em></a></li>';
       }).join('');
       if (empty) empty.hidden = hits.length > 0;
