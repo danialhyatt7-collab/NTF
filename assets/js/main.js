@@ -8,7 +8,7 @@
   var toggle = document.querySelector('[data-theme-toggle]');
   function setTheme(t) {
     root.setAttribute('data-theme', t);
-    try { localStorage.setItem('ntf-theme', t); } catch (e) {}
+    try { localStorage.setItem('ntf-theme-v2', t); } catch (e) {}
     if (toggle) toggle.setAttribute('aria-label', t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
   }
   if (toggle) {

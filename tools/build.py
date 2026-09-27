@@ -248,7 +248,7 @@ def head(title, desc, rel, page=""):
 <link rel="preload" as="font" type="font/woff2" href="{rel}assets/fonts/inter-400-latin.woff2" crossorigin>
 <link rel="stylesheet" href="{rel}assets/css/fonts.css{fonts_v}">
 <link rel="stylesheet" href="{rel}assets/css/style.css{style_v}">
-<script>(function(){{var d=document.documentElement;try{{var t=localStorage.getItem('ntf-theme')||'dark';d.setAttribute('data-theme',t);}}catch(e){{}}}})();</script>
+<script>(function(){{var d=document.documentElement;try{{var t=localStorage.getItem('ntf-theme-v2')||'dark';d.setAttribute('data-theme',t);}}catch(e){{}}}})();</script>
 </head>
 <body>
 <div class="progress"></div>
