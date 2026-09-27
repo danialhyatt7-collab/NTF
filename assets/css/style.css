@@ -549,7 +549,10 @@ footer.site .brand:hover .brand-type .sub{color:var(--text)}
 .size{font-family:var(--mono);font-size:.66rem;line-height:1;background:var(--surface);border:1px solid var(--line-strong);
   border-radius:5px;padding:.32rem .45rem;color:var(--text-2);cursor:pointer;
   transition:background .2s,border-color .2s,color .2s,transform .25s var(--ease)}
-.size:hover:not(:disabled){border-color:var(--brand);color:var(--brand-strong);transform:translateY(-1px)}
+/* the hover rule outranks the selected rule on specificity, so it must exclude
+   selected chips or it repaints their text the same colour as their fill */
+.size:hover:not(:disabled):not([aria-pressed="true"]){border-color:var(--brand);color:var(--brand-strong);transform:translateY(-1px)}
+.size[aria-pressed="true"]:hover{transform:translateY(-1px);opacity:.82}
 .size[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:var(--on-brand);font-weight:700;
   animation:sizePop .3s var(--ease)}
 .size:disabled{opacity:.35;cursor:not-allowed;text-decoration:line-through}
