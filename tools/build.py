@@ -429,7 +429,10 @@ def qty_block(p, ident):
 <span class="qty-min">min {p['moq']}</span>
 </div>"""
 
-def pcard(c, p, rel):
+def pcard(c, p, rel, show_qty=True):
+    """show_qty=False drops the quantity stepper, for the home catalogue where
+    the cards are a showcase rather than an order form. Sizes stay, and the
+    picker script handles a missing input, so the quote link still works."""
     s = slugify(p["name"])
     ident = s + "-" + c["slug"]
     tags = "".join('<span%s>%s</span>' % (' class="brandtag"' if i == 0 else '', t)
@@ -446,7 +449,7 @@ def pcard(c, p, rel):
 <p class="pcard-sub">{p['sub']}</p>
 <div class="pcard-divider"></div>
 <div class="sizes" role="group" aria-label="Select sizes for {p['name']}"><b>Size //</b>{size_buttons(p, 7)}</div>
-{qty_block(p, ident)}
+{qty_block(p, ident) if show_qty else ""}
 <a class="pcard-cta" data-quote-cta href="{rel}quote.html?product={p['name'].replace(' ', '%20')}&amp;category={c['slug']}">Request a quote {I['arrow']}</a>
 </div></article>"""
 
@@ -468,9 +471,9 @@ def build_home():
 
     catalog = ""
     for c in CATEGORIES:
-        catalog += pcard(c, c["products"][0], rel)
+        catalog += pcard(c, c["products"][0], rel, show_qty=False)
     for c in CATEGORIES[:1]:
-        catalog += pcard(c, c["products"][4], rel)
+        catalog += pcard(c, c["products"][4], rel, show_qty=False)
 
     filters = "".join(f'<a href="collections/{c["slug"]}.html">{c["name"]}</a>' for c in CATEGORIES)
     gal = "".join(f'<figure>{img(rel, k, "NTF manufacturing and sport")}</figure>' for k in GALLERY * 2)
