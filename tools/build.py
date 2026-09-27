@@ -651,7 +651,7 @@ def build_product(c, p):
         f'{img(rel, t["img"], t["name"])}</button>' for i, t in enumerate(thumbs))
     rows = "".join(f"<tr><th>{k}</th><td>{v}</td></tr>" for k, v in p["specs"])
     sizes = " &middot; ".join(p["sizes"])
-    related = "".join(pcard(c, q, rel) for q in others[:3])
+    related = "".join(pcard(c, q, rel, show_qty=False) for q in others[:3])
     tags = "".join(f'<span>{t}</span>' for t in p["tags"])
     return (head(f"{p['name']} | {c['name']} | NTF INTERNATIONAL", p["desc"], rel, f"products/{s}.html")
     + header(rel, "collections.html")
