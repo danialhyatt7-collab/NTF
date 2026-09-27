@@ -34,11 +34,16 @@
   color-scheme:light;
 }
 *,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth;overflow-x:hidden;-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth;overflow-x:clip;-webkit-text-size-adjust:100%}
+/* Safari before 16 has no overflow-x:clip. Fall back to hidden there: it
+   costs sticky on those versions but keeps the page from scrolling sideways. */
+@supports not (overflow-x: clip){
+  html,body{overflow-x:hidden}
+}
 body{
   margin:0;background:var(--bg);color:var(--text);
   font-family:var(--body);font-size:16.5px;line-height:1.65;letter-spacing:-.005em;
-  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;overflow-x:clip;
   transition:background .4s var(--ease),color .4s var(--ease);
 }
 img{max-width:100%;display:block}
