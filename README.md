@@ -1,13 +1,15 @@
-# NTF Sportswear — website
+# NTF INTERNATIONAL — website
 
-Multi-page static website for **NTF**, a custom sportswear and combat-gear manufacturer.
+Multi-page static website for **NTF INTERNATIONAL**, a custom sportswear and combat-gear manufacturer.
 
 **Live site:** https://danialhyatt7-collab.github.io/NTF/
 
 ## Design
 
-Light corporate theme by default, with a **dark-mode switcher** in the header (remembers the
-choice in `localStorage`, follows the OS setting on first visit, no flash of the wrong theme).
+Monochrome black-and-white system. **Black is the default theme**; a switcher in the header
+swaps to white (the choice is remembered in `localStorage`, with no flash of the wrong theme).
+`--brand` is the single accent (white on black, black on white) and `--on-brand` is whatever
+sits legibly on it, so the palette inverts cleanly from one set of tokens.
 Layout follows a technical catalog structure — numbered sections, monospace spec labels,
 size chips, corner tick marks and a capability matrix with animated meters.
 
@@ -24,8 +26,8 @@ back-to-top fade. All disabled under `prefers-reduced-motion`.
 - **37 pages:** home, collections index, 5 category pages, 25 product pages, quote, process, about, contact, 404
 - **Collections:** Martial Arts · MMA Wear · MMA Grappling Dummy · Fitness Wear · GYM Wrist Straps (5 products each)
 - **Request a Quote:** inline-validated form, pre-filled from any product page
-  (`quote.html?product=…&category=…`), composes an email to support@ntf.com.pk
-- **Contact:** +92 333 8686122 · support@ntf.com.pk · WhatsApp button on every page
+  (`quote.html?product=…&category=…`), composes an email to info@ntfint.com
+- **Contact:** +92 333 8686122 · info@ntfint.com · WhatsApp button on every page
 
 ## Logo
 
@@ -33,9 +35,8 @@ Vector logos derived from the supplied brand PDF, in `assets/img/`:
 
 | File | Use |
 |---|---|
-| `logo-green.svg` | Primary brand mark (`#00a650`) |
-| `logo-black.svg` | Light backgrounds, print |
-| `logo-white.svg` | Dark backgrounds |
+| `logo-black.svg` | Primary mark: light backgrounds, favicon, print |
+| `logo-white.svg` | Dark backgrounds (the default theme) |
 
 ## Photography
 

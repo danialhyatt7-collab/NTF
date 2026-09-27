@@ -416,7 +416,7 @@
       var body = Object.keys(data).map(function (k) { return k.replace(/^\w/, function (c) { return c.toUpperCase(); }) + ': ' + data[k]; }).join('\n');
       var note = document.querySelector('.ok');
       if (note) { note.classList.add('show'); note.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' }); }
-      window.location.href = 'mailto:support@ntf.com.pk'
+      window.location.href = 'mailto:info@ntfint.com'
         + '?subject=' + encodeURIComponent('Quote request - ' + (data.company || data.name || 'NTF'))
         + '&body=' + encodeURIComponent(body);
     });

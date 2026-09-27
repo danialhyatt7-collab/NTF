@@ -24,10 +24,11 @@ def ver(relpath):
         return ""
 
 SITE = "https://danialhyatt7-collab.github.io/NTF/"
+BRAND = "NTF INTERNATIONAL"
 PHONE = "+92 333 8686122"
 PHONE_TEL = "+923338686122"
 PHONE_WA = "923338686122"
-EMAIL = "support@ntf.com.pk"
+EMAIL = "info@ntfint.com"
 
 I = {  # inline icons (stroke = currentColor)
 "arrow": '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
@@ -48,6 +49,48 @@ I = {  # inline icons (stroke = currentColor)
 "tag": '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 12 22l-9-9V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>',
 "box": '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/></svg>',
 }
+
+
+STEP_ICONS = {
+"bulb": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg>',
+"layers": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 9 5-9 5-9-5 9-5zM3 12l9 5 9-5M3 17l9 5 9-5"/></svg>',
+"scissors": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/></svg>',
+"print": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v7H6z"/></svg>',
+"shield": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>',
+"box": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/></svg>',
+}
+
+PROCESS_STEPS = [
+    ("01", "bulb", "Design &amp; development", "Tech pack, pattern and digital mock-up"),
+    ("02", "layers", "Fabric selection", "GSM, composition and mill named on your spec"),
+    ("03", "scissors", "Cutting &amp; stitching", "Graded patterns, bar-tacked at every load point"),
+    ("04", "print", "Printing &amp; embroidery", "Sublimation, embroidery, transfer, woven labels"),
+    ("05", "shield", "Quality inspection", "Every piece measured before it is packed"),
+    ("06", "box", "Packaging &amp; delivery", "Tagged, boxed your way, shipped door to door"),
+]
+
+def process_banner():
+    steps = "".join(
+        f'''<li class="pstep">
+<span class="pstep-ic">{STEP_ICONS[ic]}</span>
+<span class="pstep-n">{n}</span>
+<b>{title}</b>
+<span>{note}</span>
+</li>''' for n, ic, title, note in PROCESS_STEPS)
+    return f'''<section class="section-alt"><div class="wrap">
+<div class="pbanner reveal">
+<div class="pbanner-head">
+<div>
+<p class="mono">The complete process</p>
+<h2>The complete process of<br><strong>custom sportswear</strong><br>manufacturing</h2>
+<p class="pbanner-sub">From concept to global delivery</p>
+</div>
+<ul class="pbanner-tags"><li>Design</li><li>Develop</li><li>Manufacture</li><li>Deliver</li></ul>
+</div>
+<ol class="psteps">{steps}</ol>
+</div>
+</div></section>
+'''
 
 def P(name, tags, sub, sizes, moq, desc, specs, img, out=()):
     return dict(name=name, tags=tags, sub=sub, sizes=sizes, moq=moq,
@@ -176,14 +219,14 @@ def head(title, desc, rel, page=""):
     style_v = ver("assets/css/style.css")
     fonts_v = ver("assets/css/fonts.css")
     return f"""<!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{title}</title>
 <meta name="description" content="{desc}">
 <link rel="canonical" href="{SITE}{canonical}">
-<meta property="og:site_name" content="NTF Sportswear">
+<meta property="og:site_name" content="NTF INTERNATIONAL">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
 <meta property="og:type" content="website">
@@ -194,18 +237,18 @@ def head(title, desc, rel, page=""):
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="NTF Sportswear - custom martial arts, MMA and fitness apparel">
+<meta property="og:image:alt" content="NTF INTERNATIONAL - custom martial arts, MMA and fitness apparel">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{title}">
 <meta name="twitter:description" content="{desc}">
 <meta name="twitter:image" content="{SITE}assets/img/og-cover.jpg">
-<meta name="theme-color" content="#ffffff">
-<link rel="icon" href="{rel}assets/img/logo-green.svg" type="image/svg+xml">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="{rel}assets/img/logo-black.svg" type="image/svg+xml">
 <link rel="preload" as="font" type="font/woff2" href="{rel}assets/fonts/plus-jakarta-sans-800-latin.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="{rel}assets/fonts/inter-400-latin.woff2" crossorigin>
 <link rel="stylesheet" href="{rel}assets/css/fonts.css{fonts_v}">
 <link rel="stylesheet" href="{rel}assets/css/style.css{style_v}">
-<script>(function(){{var d=document.documentElement;try{{var t=localStorage.getItem('ntf-theme');if(!t)t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';d.setAttribute('data-theme',t);}}catch(e){{}}}})();</script>
+<script>(function(){{var d=document.documentElement;try{{var t=localStorage.getItem('ntf-theme')||'dark';d.setAttribute('data-theme',t);}}catch(e){{}}}})();</script>
 </head>
 <body>
 <div class="progress"></div>
@@ -267,9 +310,10 @@ def header(rel, current):
 </div>
 </div></div>
 <header class="site" data-header><div class="wrap nav">
-<a class="brand" href="{rel}index.html" aria-label="NTF Sportswear, home">
-<img class="brand-mark" src="{rel}assets/img/logo-green.svg" alt="" width="36" height="36">
-<span class="brand-type"><b>NTF</b> <span class="sub">Sportswear</span></span>
+<a class="brand" href="{rel}index.html" aria-label="NTF INTERNATIONAL, home">
+<img class="brand-mark light-only" src="{rel}assets/img/logo-black.svg" alt="" width="36" height="36">
+<img class="brand-mark dark-only" src="{rel}assets/img/logo-white.svg" alt="" width="36" height="36">
+<span class="brand-type"><b>NTF</b> <span class="sub">International</span></span>
 </a>
 <nav class="menu" aria-label="Main">{links}
 <a class="btn btn-primary btn-sm" href="{rel}quote.html">Request a Quote {I['arrow']}</a>
@@ -317,10 +361,10 @@ def footer(rel):
 <footer class="site"><div class="wrap">
 <div class="fgrid">
 <div class="fbrand">
-<a class="brand" href="{rel}index.html" aria-label="NTF Sportswear, home">
+<a class="brand" href="{rel}index.html" aria-label="NTF INTERNATIONAL, home">
 <img class="brand-mark light-only" src="{rel}assets/img/logo-black.svg" alt="" width="40" height="40">
 <img class="brand-mark dark-only" src="{rel}assets/img/logo-white.svg" alt="" width="40" height="40">
-<span class="brand-type"><b>NTF</b> <span class="sub">Sportswear</span></span></a>
+<span class="brand-type"><b>NTF</b> <span class="sub">International</span></span></a>
 <p>Custom sportswear and combat gear, manufactured in Sialkot, Pakistan for gyms, academies and apparel labels worldwide.</p>
 <a class="btn btn-primary btn-sm" href="{rel}quote.html">Request a quote {I['arrow']}</a>
 </div>
@@ -340,7 +384,7 @@ def footer(rel):
 </ul></div>
 </div>
 <div class="legal">
-<span>&copy; <span id="year">2026</span> NTF Sportswear. All rights reserved.</span>
+<span>&copy; <span id="year">2026</span> NTF INTERNATIONAL. All rights reserved.</span>
 <span>Minimum order from 5 pieces &middot; Quotes answered within one working day &middot; Shipped worldwide</span>
 </div>
 </div></footer>
@@ -398,7 +442,7 @@ def pcard(c, p, rel):
 </a>
 <div class="pcard-body">
 <p class="kicker">{c['name']}</p>
-<div class="pcard-head"><h3><a href="{rel}products/{s}.html">{p['name']}</a></h3><span class="moq">MOQ {p['moq']}</span></div>
+<div class="pcard-head"><h3><a href="{rel}products/{s}.html">{p['name']}</a></h3></div>
 <p class="pcard-sub">{p['sub']}</p>
 <div class="pcard-divider"></div>
 <div class="sizes" role="group" aria-label="Select sizes for {p['name']}"><b>Size //</b>{size_buttons(p, 7)}</div>
@@ -434,7 +478,7 @@ def build_home():
                     ["Martial Arts","MMA Wear","Grappling Dummies","Fitness Wear","Wrist Straps",
                      "Private Label","Low Minimums","Worldwide Shipping"] * 2)
 
-    return (head("NTF Sportswear | Custom Martial Arts, MMA &amp; Fitness Apparel Manufacturer",
+    return (head("NTF INTERNATIONAL | Custom Martial Arts, MMA &amp; Fitness Apparel Manufacturer",
         "NTF manufactures custom martial arts uniforms, MMA fight wear, grappling dummies, gym apparel and lifting straps. Low minimums, your branding, shipped worldwide.", rel, "index.html")
     + header(rel, "index.html")
     + f"""<section class="hero"><div class="wrap hero-grid">
@@ -557,7 +601,7 @@ def build_collections():
 {img(rel, c['hero'], c['name'] + ' by NTF')}
 <div class="tile-body"><p class="kicker">{c['tag']} &middot; 5 products</p><h3>{c['name']}</h3>
 <p>{c['blurb']}</p><span class="arrow-link">View collection <span>{I['arrow']}</span></span></div></a>"""
-    return (head("Collections | NTF Custom Sportswear",
+    return (head("Collections | NTF INTERNATIONAL",
         "Browse NTF collections: martial arts uniforms, MMA wear, grappling dummies, fitness wear and gym wrist straps.", rel, "collections.html")
     + header(rel, "collections.html")
     + f"""<section class="pagehead"><div class="wrap">
@@ -572,7 +616,7 @@ def build_category(c):
     rel = "../"
     cards = "".join(pcard(c, p, rel) for p in c["products"])
     others = "".join(f'<a href="{o["slug"]}.html">{o["name"]}</a>' for o in CATEGORIES if o["slug"] != c["slug"])
-    return (head(f"{c['name']} | NTF Custom Sportswear", c["blurb"], rel, f"collections/{c['slug']}.html")
+    return (head(f"{c['name']} | NTF INTERNATIONAL", c["blurb"], rel, f"collections/{c['slug']}.html")
     + header(rel, "collections.html")
     + f"""<section class="pagehead"><div class="wrap">
 <p class="crumbs"><a href="{rel}index.html">Home</a> / <a href="{rel}collections.html">Collections</a> / {c['name']}</p>
@@ -606,7 +650,7 @@ def build_product(c, p):
     sizes = " &middot; ".join(p["sizes"])
     related = "".join(pcard(c, q, rel) for q in others[:3])
     tags = "".join(f'<span>{t}</span>' for t in p["tags"])
-    return (head(f"{p['name']} | {c['name']} | NTF Custom Sportswear", p["desc"], rel, f"products/{s}.html")
+    return (head(f"{p['name']} | {c['name']} | NTF INTERNATIONAL", p["desc"], rel, f"products/{s}.html")
     + header(rel, "collections.html")
     + f"""<section class="pagehead" style="background:var(--bg);border:0;padding-bottom:0">
 <div class="wrap"><p class="crumbs"><a href="{rel}index.html">Home</a> / <a href="{rel}collections.html">Collections</a> / <a href="{rel}collections/{c['slug']}.html">{c['name']}</a> / {p['name']}</p></div>
@@ -659,7 +703,7 @@ def build_quote():
     opts = "".join(f'<option value="{c["slug"]}">{c["name"]}</option>' for c in CATEGORIES)
     chips = "".join(f'<label class="chip"><input type="checkbox" name="services" value="{s}"><span>{s}</span></label>'
                     for s in ["Custom manufacturing","Private label","Sampling only","Bulk reorder","Design help"])
-    return (head("Request a Quote | NTF Custom Sportswear",
+    return (head("Request a Quote | NTF INTERNATIONAL",
         "Tell NTF what you want made and get per-unit costing, fabric options and a lead time back within one working day.", rel, "quote.html")
     + header(rel, "quote.html")
     + f"""<section class="pagehead"><div class="wrap">
@@ -716,7 +760,7 @@ def build_about():
              (I['shield'],"QC on every piece","Measurement, stitch and print checks before packing, not a spot check of one carton."),
              (I['globe'],"Grow with volume","Start at a handful of pieces to test the market, scale into container loads on the same patterns.")]
     f = "".join(f'<div class="feature reveal"><div class="ic">{i}</div><h3>{t}</h3><p>{d}</p></div>' for i, t, d in feats)
-    return (head("About | NTF Custom Sportswear",
+    return (head("About | NTF INTERNATIONAL",
         "NTF is a Sialkot-based manufacturer of custom martial arts, MMA and fitness apparel and training gear.", rel, "about.html")
     + header(rel, "about.html")
     + f"""<section class="pagehead"><div class="wrap">
@@ -738,15 +782,9 @@ def build_about():
 <p class="lead" style="max-width:60ch;margin-bottom:2rem">Three things decide whether a piece leaves the floor: does it measure to spec, does the seam survive load, and does the decoration survive washing. Everything else is opinion.</p>
 <div class="grid g4">{f}</div>
 </div></section>
-<section><div class="wrap">
-<div class="sec-index"><span class="idx">[ 04 ]</span><h2>Inside the floor</h2></div>
-<div class="grid g3" style="margin-top:2rem">
-<div class="media-frame reveal-img">{img(rel, 'fac-floor-v2', 'Stitching line')}</div>
-<div class="media-frame reveal-img">{img(rel, 'fac-spools', 'Thread spools')}</div>
-<div class="media-frame reveal-img">{img(rel, 'fac-machine', 'Machine detail')}</div>
-</div>
-</div></section>
-""" + footer(rel))
+"""
+    + process_banner()
+    + footer(rel))
 
 def build_process():
     rel = ""
@@ -757,7 +795,7 @@ def build_process():
              ("05","Production and QC","Three to four weeks for most bulk runs. Every piece is measured and inspected, and we share line photos mid-run."),
              ("06","Packing and freight","Poly-bagged, tagged and boxed your way, then shipped door to door by air or sea, our forwarder or yours.")]
     ls = "".join(f'<li><span class="num">{n}</span><div><b>{t}</b><p>{d}</p></div></li>' for n, t, d in steps)
-    return (head("How We Work | NTF Custom Sportswear",
+    return (head("How We Work | NTF INTERNATIONAL",
         "From brief to bulk: how NTF quotes, samples, produces and ships custom sportswear orders.", rel, "process.html")
     + header(rel, "process.html")
     + f"""<section class="pagehead"><div class="wrap">
@@ -788,8 +826,8 @@ def build_process():
 
 def build_contact():
     rel = ""
-    return (head("Contact | NTF Custom Sportswear",
-        f"Contact NTF Sportswear. Call {PHONE} or email {EMAIL} for custom sportswear manufacturing.", rel, "contact.html")
+    return (head("Contact | NTF INTERNATIONAL",
+        f"Contact NTF INTERNATIONAL. Call {PHONE} or email {EMAIL} for custom sportswear manufacturing.", rel, "contact.html")
     + header(rel, "contact.html")
     + f"""<section class="pagehead"><div class="wrap">
 <p class="crumbs"><a href="index.html">Home</a> / Contact</p>
@@ -817,7 +855,7 @@ def build_contact():
 
 def build_404():
     rel = ""
-    return (head("Page not found | NTF Sportswear", "That page does not exist.", rel, "404.html")
+    return (head("Page not found | NTF INTERNATIONAL", "That page does not exist.", rel, "404.html")
     + header(rel, "")
     + f"""<section class="hero"><div class="wrap center">
 <p class="badge">Error // 404</p>
