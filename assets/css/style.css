@@ -142,7 +142,7 @@ p{margin:0 0 1.1rem}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
 
 /* ---------- header ---------- */
-header.site{position:sticky;top:0;z-index:100;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(16px) saturate(180%);border-bottom:1px solid transparent;transition:border-color .35s,box-shadow .35s,background .35s}
+header.site{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid transparent;transition:border-color .35s,box-shadow .35s}
 header.site.scrolled{border-color:var(--line);box-shadow:0 4px 24px -18px rgba(12,20,32,.5)}
 .nav{display:flex;align-items:center;gap:1rem;height:var(--nav-h)}
 /* ---------- brand lockup ----------
@@ -274,8 +274,8 @@ section{padding-block:clamp(3.5rem,7vw,6rem)}
 .card-body h3 a{transition:color .25s}
 .card:hover .card-body h3 a{color:var(--brand-strong)}
 .pill{
-  position:absolute;top:.85rem;left:.85rem;z-index:2;background:color-mix(in srgb,var(--bg) 90%,transparent);
-  backdrop-filter:blur(8px);color:var(--text);border:1px solid var(--line);
+  position:absolute;top:.85rem;left:.85rem;z-index:2;background:var(--bg);
+  color:var(--text);border:1px solid var(--line);
   font-family:var(--display);font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
   padding:.28rem .65rem;border-radius:999px;
 }
@@ -523,7 +523,7 @@ footer.site .brand:hover .brand-type .sub{color:var(--text)}
 .hero-specs b{color:var(--brand-strong);font-weight:700;margin-right:.35rem}
 
 /* hero image annotations */
-.annot{position:absolute;font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:rgba(10,16,24,.55);backdrop-filter:blur(6px);padding:.3rem .55rem;border-radius:4px;border:1px solid rgba(255,255,255,.2);z-index:3}
+.annot{position:absolute;font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:rgba(10,16,24,.72);padding:.3rem .55rem;border-radius:4px;border:1px solid rgba(255,255,255,.2);z-index:3}
 .annot b{display:block;color:var(--brand);font-weight:700}
 .annot-tl{top:12px;left:12px}
 .annot-br{bottom:12px;right:12px;text-align:right}

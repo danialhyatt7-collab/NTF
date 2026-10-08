@@ -3,6 +3,23 @@
   'use strict';
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* ---------- one scroll pass ----------
+     Five separate listeners each read layout on every scroll event. Batch them
+     into a single rAF so measurements happen once per frame, not per event. */
+  var scrollJobs = [];
+  var scrollQueued = false;
+  function runScrollJobs() {
+    scrollQueued = false;
+    for (var i = 0; i < scrollJobs.length; i++) scrollJobs[i]();
+  }
+  function onScrollFrame() {
+    if (scrollQueued) return;
+    scrollQueued = true;
+    requestAnimationFrame(runScrollJobs);
+  }
+  window.addEventListener('scroll', onScrollFrame, { passive: true });
+  window.addEventListener('resize', onScrollFrame, { passive: true });
+
   /* ---------- theme ---------- */
   var root = document.documentElement;
   var toggle = document.querySelector('[data-theme-toggle]');
@@ -95,9 +112,9 @@
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && mega.classList.contains('open')) { closeMega(); trigger.focus(); }
     });
-    window.addEventListener('scroll', function () {
+    scrollJobs.push(function () {
       if (mega.classList.contains('open')) closeMega();
-    }, { passive: true });
+    });
   }
 
   /* ---------- search ---------- */
@@ -195,7 +212,7 @@
     if (top) top.classList.toggle('show', y > 600);
   }
   onScroll();
-  window.addEventListener('scroll', onScroll, { passive: true });
+  scrollJobs.push(onScroll);
   if (top) top.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' }); });
 
   /* ---------- scroll reveals (rect sweep: reliable for clip-path elements) ---------- */
@@ -213,15 +230,13 @@
     });
   }
   requestAnimationFrame(function () { requestAnimationFrame(sweep); });
-  window.addEventListener('scroll', sweep, { passive: true });
-  window.addEventListener('resize', sweep, { passive: true });
+  scrollJobs.push(sweep);
   window.addEventListener('load', sweep);
 
   /* ---------- lazy triggers (counters, meters) ---------- */
   var pending = [];
   function drain() { pending = pending.filter(function (fn) { return fn(); }); }
-  window.addEventListener('scroll', drain, { passive: true });
-  window.addEventListener('resize', drain, { passive: true });
+  scrollJobs.push(drain);
   window.addEventListener('load', drain);
   requestAnimationFrame(function () { requestAnimationFrame(drain); });
 
@@ -262,13 +277,13 @@
   /* ---------- hero parallax ---------- */
   var parallax = document.querySelectorAll('[data-parallax]');
   if (parallax.length && !reduced) {
-    window.addEventListener('scroll', function () {
+    scrollJobs.push(function () {
       var y = window.scrollY;
       parallax.forEach(function (el) {
         var s = parseFloat(el.dataset.parallax) || 0.05;
         el.style.transform = 'translate3d(0,' + (-y * s).toFixed(1) + 'px,0)';
       });
-    }, { passive: true });
+    });
   }
 
   /* ---------- product gallery ---------- */
