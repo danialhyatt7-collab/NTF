@@ -153,7 +153,9 @@ header.site.scrolled{border-color:var(--line);box-shadow:0 4px 24px -18px rgba(1
 .brand-type{display:flex;align-items:baseline;gap:.32em;font-family:var(--display);
   font-size:calc(var(--lm)*.5);line-height:1;letter-spacing:-.03em;color:var(--text);white-space:nowrap}
 .brand-type b{font-weight:800}
-.brand-type .sub{font-weight:500;color:var(--text-2);transition:color .3s}
+/* set in caps, so it is sized down and tracked out to sit level with NTF */
+.brand-type .sub{font-weight:600;font-size:.8em;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--text-2);transition:color .3s}
 .brand:hover .brand-type .sub{color:var(--text)}
 @media(max-width:560px){.brand{--lm:34px}.brand-type .sub{display:none}}
 

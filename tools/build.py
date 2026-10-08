@@ -504,7 +504,7 @@ def build_home():
         wide = ' tile-wide' if i in (0, 3) else (' tile-full' if i == 4 else '')
         tiles += f"""<a class="tile reveal{wide}" href="collections/{c['slug']}.html">
 {img(rel, c['hero'], c['name'] + ' manufacturing by NTF')}
-<div class="tile-body"><p class="kicker">{c['tag']} &middot; 5 products</p><h3>{c['name']}</h3>
+<div class="tile-body"><p class="kicker">{c['tag']}</p><h3>{c['name']}</h3>
 <p>{c['blurb']}</p><span class="arrow-link">View collection <span>{I['arrow']}</span></span></div></a>"""
 
     catalog = ""
@@ -642,7 +642,7 @@ def build_collections():
         wide = ' tile-wide' if i in (0, 3) else (' tile-full' if i == 4 else '')
         tiles += f"""<a class="tile reveal{wide}" href="collections/{c['slug']}.html">
 {img(rel, c['hero'], c['name'] + ' by NTF')}
-<div class="tile-body"><p class="kicker">{c['tag']} &middot; 5 products</p><h3>{c['name']}</h3>
+<div class="tile-body"><p class="kicker">{c['tag']}</p><h3>{c['name']}</h3>
 <p>{c['blurb']}</p><span class="arrow-link">View collection <span>{I['arrow']}</span></span></div></a>"""
     return (head("Collections | NTF INTERNATIONAL",
         "Browse NTF collections: martial arts uniforms, MMA wear, grappling dummies, fitness wear and gym wrist straps.", rel, "collections.html")
