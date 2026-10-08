@@ -308,8 +308,8 @@ def header(rel, current):
 
     # mega panel: a directory of every real destination on the site
     cols = ""
-    cats = "".join('<li><a href="%scollections/%s.html"><span>%s</span><em>%d products</em></a></li>'
-                   % (rel, c["slug"], c["name"], len(c["products"])) for c in CATEGORIES)
+    cats = "".join('<li><a href="%scollections/%s.html"><span>%s</span></a></li>'
+                   % (rel, c["slug"], c["name"]) for c in CATEGORIES)
     picks = "".join('<li><a href="%sproducts/%s.html"><span>%s</span><em>%s</em></a></li>'
                     % (rel, slugify(c["products"][0]["name"]), c["products"][0]["name"], c["name"])
                     for c in CATEGORIES)
@@ -663,7 +663,7 @@ def build_category(c):
     + header(rel, "collections.html")
     + f"""<section class="pagehead"><div class="wrap">
 <p class="crumbs"><a href="{rel}index.html">Home</a> / <a href="{rel}collections.html">Collections</a> / {c['name']}</p>
-<p class="badge">{c['tag']} // 5 products</p>
+<p class="badge">{c['tag']}</p>
 <h1 style="font-size:clamp(2.2rem,5vw,3.4rem);margin-top:1rem">{c['name']}</h1>
 <p>{c['long']}</p>
 <div class="hero-cta"><a class="btn btn-primary" href="{rel}quote.html?category={c['slug']}" data-magnetic>Request a quote {I['arrow']}</a>
@@ -671,8 +671,7 @@ def build_category(c):
 </div></section>
 <section><div class="wrap">
 <div class="sec-head"><div><div class="sec-index"><span class="idx">[ 02 ]</span><h2>{c['name']} range</h2></div>
-<p>Minimums are per design and drop with volume. Sizes shown are the standard run; custom grading is available.</p></div>
-<span class="sec-note">5 products</span></div>
+<p>Minimums are per design and drop with volume. Sizes shown are the standard run; custom grading is available.</p></div></div>
 <div class="grid g3">{cards}</div>
 </div></section>
 <section class="section-alt"><div class="wrap">
