@@ -491,7 +491,19 @@ def pcard(c, p, rel, show_qty=True):
 <a class="pcard-cta" data-quote-cta href="{rel}quote.html?product={p['name'].replace(' ', '%20')}&amp;category={c['slug']}">Request a quote {I['arrow']}</a>
 </div></article>"""
 
+# A template chunk reopened as a plain string instead of an f-string renders its
+# placeholders as literal text on the page. Catch that at build time.
+PLACEHOLDER = re.compile(r"\{[A-Za-z_][A-Za-z0-9_]*\s*[\[(]"
+                         r"|\{(?:rel|canonical|style_v|js_v|idx_v|fonts_v|cards|cats|"
+                         r"steps|picks|company|cols|related|rows|chips|opts|tags|links|ident)\}")
+
 def write(path, html):
+    if path.endswith(".html"):
+        found = PLACEHOLDER.findall(html)
+        if found:
+            raise SystemExit("%s: template placeholder left unrendered: %s\n"
+                             "A chunk is probably opened with \"\"\" instead of f\"\"\"."
+                             % (path, sorted(set(found))[:5]))
     full = os.path.join(ROOT, path)
     os.makedirs(os.path.dirname(full) or ".", exist_ok=True)
     open(full, "w", encoding="utf-8").write(html)
@@ -606,7 +618,7 @@ def build_home():
 
 """
     + departments_section(rel)
-    + """<section><div class="wrap">
+    + f"""<section><div class="wrap">
 <div class="sec-head"><div><div class="sec-index"><span class="idx">[ 06 ]</span><h2>Brief to bulk</h2></div>
 <p>Most clients go from first message to approved sample inside two weeks, and to delivered cartons in four to six.</p></div>
 <a class="arrow-link" href="process.html">Full process <span>{I['arrow']}</span></a></div>
