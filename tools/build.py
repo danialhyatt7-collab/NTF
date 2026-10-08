@@ -69,6 +69,44 @@ PROCESS_STEPS = [
     ("06", "box", "Packaging &amp; delivery", "Tagged, boxed your way, shipped door to door"),
 ]
 
+
+DEPARTMENTS = [
+    ("dep-rnd", "Research &amp; Development",
+     ["Design", "3D mock-up", "Pattern drafting", "Sampling", "Fit approval"]),
+    ("dep-raw", "Raw Materials",
+     ["Fabric sourcing", "Thread", "Zips &amp; trims", "GSM verification"]),
+    ("dep-cutting", "Pattern Making &amp; Cutting",
+     ["Pattern drafting", "Size grading", "Marker making", "Manual cutting", "Cutting after sublimation"]),
+    ("dep-stitching", "Stitching",
+     ["Stitching hall", "Bar-tack", "Flatlock", "Overlock", "Coverstitch"]),
+    ("dep-embellish", "Embellishment",
+     ["Sublimation printing", "Embroidery", "Heat transfer", "Screen printing", "Woven labels"]),
+    ("dep-quality", "Quality Check",
+     ["Fabric inspection", "Measurement check", "Print &amp; wash test", "Final inspection"]),
+    ("dep-packing", "Tagging &amp; Packing",
+     ["Steam pressing", "Labels &amp; hang tags", "Poly bagging", "Carton packing"]),
+    ("dep-dispatch", "Dispatch &amp; Logistics",
+     ["Carton marking", "Export documents", "Air &amp; sea freight", "Door-to-door tracking"]),
+]
+
+def departments_section(rel):
+    cards = "".join(
+        f'''<article class="dept reveal">
+<div class="dept-media">{img(rel, key, name.replace("&amp;", "and") + " department at NTF")}</div>
+<div class="dept-body">
+<h3>{name}</h3>
+<ul>{"".join(f"<li>{s}</li>" for s in subs)}</ul>
+</div></article>''' for key, name, subs in DEPARTMENTS)
+    return f'''<section class="section-alt"><div class="wrap">
+<div class="sec-head">
+<div><div class="sec-index"><span class="idx">[ 05 ]</span><h2>Departments</h2></div>
+<p>Eight departments take a brief from first sketch to a boxed carton, all on one floor. Nothing is sent out and comes back a week later.</p></div>
+<span class="sec-note">8 departments</span>
+</div>
+<div class="dept-grid">{cards}</div>
+</div></section>
+'''
+
 def process_banner():
     steps = "".join(
         f'''<li class="pstep">
@@ -566,8 +604,10 @@ def build_home():
 </div>
 </div></section>
 
-<section><div class="wrap">
-<div class="sec-head"><div><div class="sec-index"><span class="idx">[ 05 ]</span><h2>Brief to bulk</h2></div>
+"""
+    + departments_section(rel)
+    + """<section><div class="wrap">
+<div class="sec-head"><div><div class="sec-index"><span class="idx">[ 06 ]</span><h2>Brief to bulk</h2></div>
 <p>Most clients go from first message to approved sample inside two weeks, and to delivered cartons in four to six.</p></div>
 <a class="arrow-link" href="process.html">Full process <span>{I['arrow']}</span></a></div>
 <div class="split">
@@ -584,7 +624,7 @@ def build_home():
 <div class="gallery section-alt"><div class="gallery-track">{gal}</div></div>
 
 <section><div class="wrap">
-<div class="sec-index"><span class="idx">[ 06 ]</span><h2>Straight answers</h2></div>
+<div class="sec-index"><span class="idx">[ 07 ]</span><h2>Straight answers</h2></div>
 <div style="max-width:820px;margin-top:2rem">
 <details open><summary>What is the minimum order?</summary><div class="answer">It depends on the product. Grappling dummies start at 5 pieces, martial arts uniforms at 10 to 12, apparel at 20 to 40, and straps at 30 to 50 per design. Mixed sizes within one design count toward the same minimum.</div></details>
 <details><summary>Can you work from my tech pack?</summary><div class="answer">Yes. Send a tech pack, a physical sample or reference photos. We build the pattern from it and flag anything that will not behave in production before we cut.</div></details>
