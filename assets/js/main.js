@@ -219,13 +219,13 @@
   var revealables = Array.prototype.slice.call(document.querySelectorAll('.reveal, .reveal-img'));
   revealables.forEach(function (el) {
     var idx = el.parentElement ? Array.prototype.indexOf.call(el.parentElement.children, el) : 0;
-    el.style.transitionDelay = Math.min(idx, 5) * 80 + 'ms';
+    el.style.transitionDelay = Math.min(idx, 3) * 45 + 'ms';
   });
   function sweep() {
     if (!revealables.length) return;
     var h = window.innerHeight || document.documentElement.clientHeight;
     revealables = revealables.filter(function (el) {
-      if (reduced || el.getBoundingClientRect().top < h - 40) { el.classList.add('in'); return false; }
+      if (reduced || el.getBoundingClientRect().top < h + 100) { el.classList.add('in'); return false; }
       return true;
     });
   }
