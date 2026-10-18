@@ -99,7 +99,7 @@ def departments_section(rel):
 </div></article>''' for key, name, subs in DEPARTMENTS)
     return f'''<section class="section-alt"><div class="wrap">
 <div class="sec-head">
-<div><div class="sec-index"><span class="idx">[ 05 ]</span><h2>Departments</h2></div>
+<div><div class="sec-index"><h2>Departments</h2></div>
 <p>Eight departments take a brief from first sketch to a boxed carton, all on one floor. Nothing is sent out and comes back a week later.</p></div>
 <span class="sec-note">8 departments</span>
 </div>
@@ -388,7 +388,7 @@ def footer(rel):
     idx_v = ver("assets/js/search-index.js")
     cats = "".join(f'<li><a href="{rel}collections/{c["slug"]}.html">{c["name"]}</a></li>' for c in CATEGORIES)
     return f"""<section><div class="wrap"><div class="cta reveal">
-<p class="mono" style="color:inherit;opacity:.7">[ Next step ]</p>
+<p class="mono" style="color:inherit;opacity:.7">Next step</p>
 <h2>Let&rsquo;s build your line</h2>
 <p>Send artwork, a tech pack or a rough sketch. You get per-unit costing and a sampling plan back within one working day.</p>
 <div class="btns">
@@ -569,7 +569,7 @@ def build_home():
 
 <section><div class="wrap">
 <div class="sec-head">
-<div><div class="sec-index"><span class="idx">[ 01 ]</span><h2>The collections</h2></div>
+<div><div class="sec-index"><h2>The collections</h2></div>
 <p>Five ranges covering the mat, the cage and the gym floor. Every product is a starting point: colours, fabric weight, cut and branding are yours to change.</p></div>
 <a class="arrow-link" href="collections.html">All collections <span>{I['arrow']}</span></a>
 </div>
@@ -578,7 +578,7 @@ def build_home():
 
 <section class="section-alt"><div class="wrap">
 <div class="sec-head">
-<div><div class="sec-index"><span class="idx">[ 02 ]</span><h2>The catalog</h2></div>
+<div><div class="sec-index"><h2>The catalog</h2></div>
 <p>A cross-section of what leaves the floor. Twenty-five products across five ranges, each re-speccable in your fabric, colourway and branding.</p></div>
 <span class="sec-note">Sort: featured</span>
 </div>
@@ -587,7 +587,7 @@ def build_home():
 </div></section>
 
 <section><div class="wrap">
-<div class="sec-index"><span class="idx">[ 03 ]</span><h2>Build specification &amp; capability matrix</h2></div>
+<div class="sec-index"><h2>Build specification &amp; capability matrix</h2></div>
 <p class="lead" style="max-width:62ch;margin-bottom:2.2rem">Every NTF product is built to a written spec: fabric weight, seam type, decoration method and tolerance. These are the numbers we work to.</p>
 <div class="matrix reveal">
 <div class="matrix-cell"><div class="ic">{I['tag']}</div><p class="lbl">Lowest minimum</p><p class="val"><span data-count="5">0</span> pcs</p><p class="sub">Per design on grappling dummies</p></div>
@@ -605,7 +605,7 @@ def build_home():
 
 <section class="section-alt"><div class="wrap split">
 <div class="reveal">
-<div class="sec-index"><span class="idx">[ 04 ]</span><h2>A factory,<br>not a middleman</h2></div>
+<div class="sec-index"><h2>A factory,<br>not a middleman</h2></div>
 <p class="lead">You talk to the people who cut the fabric. That means honest lead times, fabric specs you can verify, and changes that actually get made instead of getting lost between three agents and a trading house.</p>
 <a class="btn btn-dark" href="about.html" data-magnetic>More about NTF {I['arrow']}</a>
 </div>
@@ -619,7 +619,7 @@ def build_home():
 """
     + departments_section(rel)
     + f"""<section><div class="wrap">
-<div class="sec-head"><div><div class="sec-index"><span class="idx">[ 06 ]</span><h2>Brief to bulk</h2></div>
+<div class="sec-head"><div><div class="sec-index"><h2>Brief to bulk</h2></div>
 <p>Most clients go from first message to approved sample inside two weeks, and to delivered cartons in four to six.</p></div>
 <a class="arrow-link" href="process.html">Full process <span>{I['arrow']}</span></a></div>
 <div class="split">
@@ -636,7 +636,7 @@ def build_home():
 <div class="gallery section-alt"><div class="gallery-track">{gal}</div></div>
 
 <section><div class="wrap">
-<div class="sec-index"><span class="idx">[ 07 ]</span><h2>Straight answers</h2></div>
+<div class="sec-index"><h2>Straight answers</h2></div>
 <div style="max-width:820px;margin-top:2rem">
 <details open><summary>What is the minimum order?</summary><div class="answer">It depends on the product. Grappling dummies start at 5 pieces, martial arts uniforms at 10 to 12, apparel at 20 to 40, and straps at 30 to 50 per design. Mixed sizes within one design count toward the same minimum.</div></details>
 <details><summary>Can you work from my tech pack?</summary><div class="answer">Yes. Send a tech pack, a physical sample or reference photos. We build the pattern from it and flag anything that will not behave in production before we cut.</div></details>
@@ -661,7 +661,7 @@ def build_collections():
     + header(rel, "collections.html")
     + f"""<section class="pagehead"><div class="wrap">
 <p class="crumbs"><a href="index.html">Home</a> / Collections</p>
-<div class="sec-index"><span class="idx">[ 01 ]</span><h1 style="font-size:clamp(2.2rem,5vw,3.4rem)">Collections</h1></div>
+<div class="sec-index"><h1 style="font-size:clamp(2.2rem,5vw,3.4rem)">Collections</h1></div>
 <p>Five ranges covering the mat, the cage and the gym floor. Twenty-five catalogue products, every one of them re-speccable in your fabric, colourway and branding.</p>
 </div></section>
 <section><div class="wrap"><div class="grid g3">{tiles}</div></div></section>
@@ -682,12 +682,12 @@ def build_category(c):
 <a class="btn btn-ghost" href="https://wa.me/{PHONE_WA}" target="_blank" rel="noopener">WhatsApp</a></div>
 </div></section>
 <section><div class="wrap">
-<div class="sec-head"><div><div class="sec-index"><span class="idx">[ 02 ]</span><h2>{c['name']} range</h2></div>
+<div class="sec-head"><div><div class="sec-index"><h2>{c['name']} range</h2></div>
 <p>Minimums are per design and drop with volume. Sizes shown are the standard run; custom grading is available.</p></div></div>
 <div class="grid g3">{cards}</div>
 </div></section>
 <section class="section-alt"><div class="wrap">
-<div class="sec-index"><span class="idx">[ 03 ]</span><h2>Other collections</h2></div>
+<div class="sec-index"><h2>Other collections</h2></div>
 <div class="filters" style="margin-top:1.6rem">{others}</div>
 </div></section>
 """ + footer(rel))
@@ -746,7 +746,7 @@ def build_product(c, p):
 </div>
 </div></section>
 <section class="section-alt"><div class="wrap">
-<div class="sec-head"><div><div class="sec-index"><span class="idx">[ + ]</span><h2>More from {c['name']}</h2></div></div>
+<div class="sec-head"><div><div class="sec-index"><h2>More from {c['name']}</h2></div></div>
 <a class="arrow-link" href="{rel}collections/{c['slug']}.html">View all 5 <span>{I['arrow']}</span></a></div>
 <div class="grid g3">{related}</div>
 </div></section>
@@ -796,7 +796,7 @@ def build_quote():
 <div class="info reveal"><div class="ic">{I['box']}</div><div><b>Minimums</b><span>From 5 pieces per design on dummies, 10 to 50 on apparel and straps</span></div></div>
 </div>
 <div class="formcard" style="margin-top:1.2rem">
-<div class="sec-index"><span class="idx">[ ! ]</span><h3>What to send us</h3></div>
+<div class="sec-index"><h3>What to send us</h3></div>
 <ul class="steps" style="margin-top:1rem">
 <li><span class="num">01</span><div><b>Artwork</b><p>AI, EPS, PDF or high-resolution PNG. A phone photo of a sketch is enough to start.</p></div></li>
 <li><span class="num">02</span><div><b>Size breakdown</b><p>How many of each size, or tell us your market and we will suggest a curve.</p></div></li>
@@ -819,20 +819,20 @@ def build_about():
     + header(rel, "about.html")
     + f"""<section class="pagehead"><div class="wrap">
 <p class="crumbs"><a href="index.html">Home</a> / About</p>
-<div class="sec-index"><span class="idx">[ 01 ]</span><h1 style="font-size:clamp(2.2rem,5vw,3.4rem)">A factory, not a middleman</h1></div>
+<div class="sec-index"><h1 style="font-size:clamp(2.2rem,5vw,3.4rem)">A factory, not a middleman</h1></div>
 <p>NTF is a custom sportswear manufacturer based in Sialkot, Pakistan, the city that has been making the world&rsquo;s combat sports gear for a century. We make for gyms, academies, fight teams and apparel labels who want their own product rather than a logo on someone else&rsquo;s catalogue.</p>
 </div></section>
 <section><div class="wrap split">
 <div class="media-frame reveal-img" style="aspect-ratio:4/5">{img(rel, 'fac-mill-v2', 'NTF production floor')}</div>
 <div class="reveal">
-<div class="sec-index"><span class="idx">[ 02 ]</span><h2>What we actually do</h2></div>
+<div class="sec-index"><h2>What we actually do</h2></div>
 <p class="lead">We take a brief, a tech pack, a competitor sample or sometimes just a conversation, and turn it into a pattern, a sample and then a production run.</p>
 <p>Cutting, stitching, sublimation, embroidery and finishing all happen in-house, so when you ask for a change it reaches the person holding the scissors. Our ranges cover martial arts uniforms and belts, MMA fight wear, grappling dummies, gym apparel and lifting support.</p>
 <a class="btn btn-dark" href="collections.html" data-magnetic>See the collections {I['arrow']}</a>
 </div>
 </div></section>
 <section class="section-alt"><div class="wrap">
-<div class="sec-index"><span class="idx">[ 03 ]</span><h2>How we judge our own work</h2></div>
+<div class="sec-index"><h2>How we judge our own work</h2></div>
 <p class="lead" style="max-width:60ch;margin-bottom:2rem">Three things decide whether a piece leaves the floor: does it measure to spec, does the seam survive load, and does the decoration survive washing. Everything else is opinion.</p>
 <div class="grid g4">{f}</div>
 </div></section>
@@ -854,7 +854,7 @@ def build_process():
     + header(rel, "process.html")
     + f"""<section class="pagehead"><div class="wrap">
 <p class="crumbs"><a href="index.html">Home</a> / Process</p>
-<div class="sec-index"><span class="idx">[ 01 ]</span><h1 style="font-size:clamp(2.2rem,5vw,3.4rem)">Brief to bulk</h1></div>
+<div class="sec-index"><h1 style="font-size:clamp(2.2rem,5vw,3.4rem)">Brief to bulk</h1></div>
 <p>No portals and no onboarding calls. A short, honest sequence that most clients complete in four to six weeks from first message to delivered cartons.</p>
 </div></section>
 <section><div class="wrap split">
@@ -868,7 +868,7 @@ def build_process():
 </div>
 </div></section>
 <section class="section-alt"><div class="wrap">
-<div class="sec-index"><span class="idx">[ 02 ]</span><h2>Details that save you weeks</h2></div>
+<div class="sec-index"><h2>Details that save you weeks</h2></div>
 <div style="max-width:820px;margin-top:2rem">
 <details open><summary>Sampling charges</summary><div class="answer">Samples are charged at cost plus courier, and credited against your first bulk invoice.</div></details>
 <details><summary>Payment terms</summary><div class="answer">Typically 50% to start production and 50% against shipping documents, by bank transfer or Wise.</div></details>
@@ -885,7 +885,7 @@ def build_contact():
     + header(rel, "contact.html")
     + f"""<section class="pagehead"><div class="wrap">
 <p class="crumbs"><a href="index.html">Home</a> / Contact</p>
-<div class="sec-index"><span class="idx">[ 01 ]</span><h1 style="font-size:clamp(2.2rem,5vw,3.4rem)">Contact NTF</h1></div>
+<div class="sec-index"><h1 style="font-size:clamp(2.2rem,5vw,3.4rem)">Contact NTF</h1></div>
 <p>Message us on WhatsApp for the fastest answer, or email if you have files to send. We read everything ourselves.</p>
 </div></section>
 <section><div class="wrap split" style="align-items:start">
@@ -896,7 +896,7 @@ def build_contact():
 <div class="info reveal"><div class="ic">{I['clock']}</div><div><b>Hours</b><span>Monday to Saturday, 9am to 7pm PKT (UTC+5)</span></div></div>
 </div>
 <div class="formcard reveal">
-<div class="sec-index"><span class="idx">[ 02 ]</span><h2 style="font-size:1.7rem">Fastest route</h2></div>
+<div class="sec-index"><h2 style="font-size:1.7rem">Fastest route</h2></div>
 <p class="lead" style="margin-top:1rem">The quote form captures quantity, category and branding in one go, which means our first reply can already carry pricing instead of questions.</p>
 <a class="btn btn-primary btn-lg" href="quote.html" data-magnetic>Request a quote {I['arrow']}</a>
 <div style="margin-top:2rem;padding-top:1.6rem;border-top:1px solid var(--line)">
