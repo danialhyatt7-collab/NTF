@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>NTF INTERNATIONAL — Site Map (Tree)</title>
+<link rel="stylesheet" href="../assets/css/fonts.css">
+<style>
+  @page { size:A3; margin:0; }
+  :root { --bg:#000; --fg:#fff; --fg2:rgba(255,255,255,.6); --line:rgba(255,255,255,.22); }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--fg); font-family:"Inter",system-ui,sans-serif;
+    font-size:9pt; line-height:1.4; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .sheet { width:297mm; height:419mm; overflow:hidden; padding:18mm 16mm 14mm; display:flex; flex-direction:column; }
+  h1,h2,.t { font-family:"Plus Jakarta Sans",sans-serif; font-weight:800;
+    letter-spacing:-.02em; text-transform:uppercase; }
+  h1 { font-size:30pt; line-height:.95; }
+  .mono,.u,.n { font-family:"JetBrains Mono",monospace; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--fg2); font-size:6.8pt; }
+  .mast { display:flex; justify-content:space-between; align-items:flex-end;
+    gap:12mm; padding-bottom:5mm; border-bottom:1.2px solid var(--fg); }
+  .mast img { width:18mm; margin-bottom:4mm; }
+  .mast .r { text-align:right; line-height:2; }
+
+  /* tree */
+  .tree { flex:1; padding-top:7mm; }
+  .tree ul { list-style:none; padding-left:13mm; position:relative; }
+  .tree ul::before { content:""; position:absolute; left:4mm; top:0; bottom:0;
+    border-left:1px solid var(--line); }
+  .tree ul > li { position:relative; padding:0 0 2.2mm 0; }
+  .tree ul.flat { display:grid; grid-template-columns:repeat(4,1fr); gap:3mm; }
+  .tree ul.flat > li { padding:0; }
+  .tree ul.flat > li::before { top:6mm; }
+  .tree ul.flat > li:not(:first-child)::before { display:none; }
+  .tree ul.flat > li > .box { height:100%; }
+  .tree ul > li::before { content:""; position:absolute; left:-9mm; top:7mm;
+    width:9mm; border-top:1px solid var(--line); }
+  .tree ul > li:last-child > .stub { display:none; }
+
+  .root > .box { border:1.2px solid var(--fg); }
+  .box { border:1px solid var(--line); padding:2.6mm 3.5mm; }
+  .t { display:block; font-size:11pt; }
+  .t em { font-family:"JetBrains Mono",monospace; font-style:normal; font-size:7.5pt;
+    color:var(--fg2); margin-right:2mm; }
+  .u { display:block; margin-top:1mm; }
+  .n { display:block; margin-top:1.5mm; text-transform:none; letter-spacing:.02em;
+    font-family:"Inter",sans-serif; font-size:8pt; }
+  .branch > .box { border-left:2.5px solid var(--fg); }
+  .branch > .box .t { font-size:12.5pt; }
+
+  .chips { display:grid; grid-template-columns:repeat(5,1fr); gap:1.8mm; margin-top:2.4mm;
+    padding-top:2.4mm; border-top:1px dotted var(--line); }
+  .chip { border:1px solid var(--line); padding:2mm 2.5mm; display:block; }
+  .chip b { display:block; font-weight:600; font-size:8.2pt; line-height:1.25; }
+  .chip i { display:block; font-family:"JetBrains Mono",monospace; font-style:normal;
+    font-size:5.6pt; color:var(--fg2); margin-top:1.2mm; word-break:break-all; }
+
+  .cols { display:grid; grid-template-columns:1fr 1fr; gap:4mm; }
+  footer { display:flex; justify-content:space-between; margin-top:8mm;
+    padding-top:3mm; border-top:1.2px solid var(--fg); }
+</style></head><body>
+<div class="sheet">
+  <div class="mast">
+    <div><img src="../assets/img/logo-white.svg" alt=""><h1>Site Map</h1></div>
+    <div class="r">
+      <div class="mono">NTF INTERNATIONAL</div>
+      <div class="mono">36 pages &middot; 5 lines &middot; 25 products</div>
+      <div class="mono">https://danialhyatt7-collab.github.io/NTF/</div>
+    </div>
+  </div>
+
+  <div class="tree">
+    <div class="box root" style="max-width:95mm">
+      <span class="t">Home</span><span class="u">/index.html</span>
+      <span class="n">Hero, catalogue, departments, process, proof, quote CTA</span>
+    </div>
+    <ul>
+      <li class="branch">
+        <div class="box">
+          <span class="t">Collections</span><span class="u">/collections.html</span>
+          <span class="n">Five product lines, each tile opening its own page</span>
+        </div>
+        <ul><li class="leaf cat">
+  <div class="box">
+    <span class="t"><em>01</em> Martial Arts</span>
+    <span class="u">/collections/martial-arts.html</span>
+    <span class="n">Uniforms &amp; Belts &middot; 5 products</span>
+    <div class="chips"><span class="chip"><b>Pearl Weave BJJ Gi</b><i>/products/pearl-weave-bjj-gi.html</i></span><span class="chip"><b>Heavyweight Karate Gi</b><i>/products/heavyweight-karate-gi.html</i></span><span class="chip"><b>Taekwondo Dobok</b><i>/products/taekwondo-dobok.html</i></span><span class="chip"><b>Judo Double Weave Gi</b><i>/products/judo-double-weave-gi.html</i></span><span class="chip"><b>Embroidered Rank Belt</b><i>/products/embroidered-rank-belt.html</i></span></div>
+  </div>
+</li><li class="leaf cat">
+  <div class="box">
+    <span class="t"><em>02</em> MMA Wear</span>
+    <span class="u">/collections/mma-wear.html</span>
+    <span class="n">Fight Kit &middot; 5 products</span>
+    <div class="chips"><span class="chip"><b>Pro Fight Shorts</b><i>/products/pro-fight-shorts.html</i></span><span class="chip"><b>Long Sleeve Rash Guard</b><i>/products/long-sleeve-rash-guard.html</i></span><span class="chip"><b>Grappling Spats</b><i>/products/grappling-spats.html</i></span><span class="chip"><b>Vale Tudo Shorts</b><i>/products/vale-tudo-shorts.html</i></span><span class="chip"><b>Walkout Fight Jersey</b><i>/products/walkout-fight-jersey.html</i></span></div>
+  </div>
+</li><li class="leaf cat">
+  <div class="box">
+    <span class="t"><em>03</em> MMA Grappling Dummy</span>
+    <span class="u">/collections/mma-grappling-dummy.html</span>
+    <span class="n">Training Gear &middot; 5 products</span>
+    <div class="chips"><span class="chip"><b>Ground &amp; Pound Dummy</b><i>/products/ground-pound-dummy.html</i></span><span class="chip"><b>Throwing Judo Dummy</b><i>/products/throwing-judo-dummy.html</i></span><span class="chip"><b>Youth Training Dummy</b><i>/products/youth-training-dummy.html</i></span><span class="chip"><b>Submission Grappling Dummy</b><i>/products/submission-grappling-dummy.html</i></span><span class="chip"><b>Wrestling Takedown Bag</b><i>/products/wrestling-takedown-bag.html</i></span></div>
+  </div>
+</li><li class="leaf cat">
+  <div class="box">
+    <span class="t"><em>04</em> Fitness Wear</span>
+    <span class="u">/collections/fitness-wear.html</span>
+    <span class="n">Gym Apparel &middot; 5 products</span>
+    <div class="chips"><span class="chip"><b>Seamless Sculpt Leggings</b><i>/products/seamless-sculpt-leggings.html</i></span><span class="chip"><b>Performance Training Tee</b><i>/products/performance-training-tee.html</i></span><span class="chip"><b>Sculpt Sports Bra</b><i>/products/sculpt-sports-bra.html</i></span><span class="chip"><b>Tapered Jogger Pants</b><i>/products/tapered-jogger-pants.html</i></span><span class="chip"><b>Lifting Stringer Vest</b><i>/products/lifting-stringer-vest.html</i></span></div>
+  </div>
+</li><li class="leaf cat">
+  <div class="box">
+    <span class="t"><em>05</em> GYM Wrist Straps</span>
+    <span class="u">/collections/gym-wrist-straps.html</span>
+    <span class="n">Lifting Support &middot; 5 products</span>
+    <div class="chips"><span class="chip"><b>Heavy Cotton Lifting Straps</b><i>/products/heavy-cotton-lifting-straps.html</i></span><span class="chip"><b>Figure-8 Deadlift Straps</b><i>/products/figure-8-deadlift-straps.html</i></span><span class="chip"><b>Stiff Wrist Wraps</b><i>/products/stiff-wrist-wraps.html</i></span><span class="chip"><b>Leather Lasso Straps</b><i>/products/leather-lasso-straps.html</i></span><span class="chip"><b>Padded Wrist Support Wrap</b><i>/products/padded-wrist-support-wrap.html</i></span></div>
+  </div>
+</li></ul>
+      </li>
+      <li class="branch">
+        <div class="box"><span class="t">Company &amp; Enquiry</span>
+          <span class="n">The four pages a buyer reaches from the header</span></div>
+        <ul class="flat"><li class="leaf"><div class="box"><span class="t">Process</span><span class="u">/process.html</span><span class="n">Nine-step manufacturing route</span></div></li><li class="leaf"><div class="box"><span class="t">About</span><span class="u">/about.html</span><span class="n">Factory, capability, process banner</span></div></li><li class="leaf"><div class="box"><span class="t">Contact</span><span class="u">/contact.html</span><span class="n">Phone, WhatsApp, email, address</span></div></li><li class="leaf"><div class="box"><span class="t">Request a Quote</span><span class="u">/quote.html</span><span class="n">Specification form: line, sizes, branding</span></div></li></ul>
+      </li>
+      <li class="branch">
+        <div class="box"><span class="t">Utility &amp; Machine Routes</span>
+          <span class="n">Not in navigation</span></div>
+        <ul class="flat"><li class="leaf"><div class="box"><span class="t">Not Found</span><span class="u">/404.html</span></div></li><li class="leaf"><div class="box"><span class="t">Index</span><span class="u">/sitemap.xml</span></div></li><li class="leaf"><div class="box"><span class="t">Crawlers</span><span class="u">/robots.txt</span></div></li></ul>
+      </li>
+    </ul>
+  </div>
+
+  <footer><span class="mono">Tree view &middot; A3</span>
+    <span class="mono">info@ntfint.com &middot; +92 333 8686122</span></footer>
+</div></body></html>
