@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>NTF INTERNATIONAL — Site Map</title>
+<link rel="stylesheet" href="../assets/css/fonts.css">
+<style>
+  @page { size:A4; margin:0; }
+  :root { --bg:#000; --fg:#fff; --fg2:rgba(255,255,255,.64); --line:rgba(255,255,255,.2); }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--fg); font-family:"Inter",system-ui,sans-serif;
+    font-size:10.5pt; line-height:1.55; -webkit-print-color-adjust:exact;
+    print-color-adjust:exact; }
+  .sheet { width:210mm; height:296mm; padding:18mm 18mm 14mm; overflow:hidden;
+    display:flex; flex-direction:column; }
+  .sheet + .sheet { page-break-before:always; }
+  h1,h2,h3 { font-family:"Plus Jakarta Sans",sans-serif; font-weight:800;
+    letter-spacing:-.025em; text-transform:uppercase; }
+  .mono { font-family:"JetBrains Mono",monospace; font-size:7pt; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--fg2); }
+  .num { font-family:"JetBrains Mono",monospace; font-size:9pt; color:var(--fg2);
+    padding-top:1mm; }
+
+  /* cover */
+  .first { padding:22mm 18mm 14mm; }
+  .cover { display:flex; flex-direction:column; height:100%; }
+  .logo { width:26mm; }
+  h1 { font-size:46pt; line-height:.92; margin:12mm 0 0; }
+  .lede { margin-top:7mm; max-width:120mm; font-size:12pt; color:var(--fg2); }
+  .stats { display:flex; border:1px solid var(--line); margin-top:12mm; }
+  .stats div { flex:1; padding:5mm 4mm; border-right:1px solid var(--line); }
+  .stats div:last-child { border-right:0; }
+  .stats b { display:block; font-family:"Plus Jakarta Sans",sans-serif; font-weight:800;
+    font-size:22pt; letter-spacing:-.03em; line-height:1.1; }
+  .contents { margin-top:14mm; }
+  .contents h2 { font-size:11pt; padding-bottom:3mm; border-bottom:1px solid var(--line); }
+  .contents ol { list-style:none; margin-top:4mm; }
+  .contents li { padding:2.5mm 0; border-bottom:1px dotted var(--line); font-size:11pt; }
+  .contents span { font-family:"JetBrains Mono",monospace; font-size:8pt;
+    color:var(--fg2); margin-right:4mm; }
+  .cfoot { margin-top:auto; display:flex; justify-content:space-between;
+    padding-top:4mm; border-top:1.2px solid var(--fg); }
+
+  /* inner sheets */
+  .mast { display:flex; justify-content:space-between; padding-bottom:3mm;
+    border-bottom:1px solid var(--line); margin-bottom:9mm; }
+  .sh { font-size:21pt; line-height:1.05; }
+  .intro { margin:5mm 0 8mm; color:var(--fg2); max-width:150mm; }
+
+  .menu { list-style:none; }
+  .menu li { display:grid; grid-template-columns:11mm 1fr; gap:3mm;
+    padding:4.5mm 0; border-top:1px solid var(--line); }
+  .menu h3 { font-size:14pt; }
+  .menu .path { font-family:"JetBrains Mono",monospace; font-size:7pt; color:var(--fg2);
+    letter-spacing:.1em; margin:.8mm 0 2mm; }
+  .menu p { color:var(--fg2); font-size:10pt; }
+
+  .line { border:1px solid var(--line); padding:5mm 5.5mm; margin-bottom:5mm; }
+  .line header { display:flex; gap:4mm; align-items:baseline;
+    padding-bottom:3mm; border-bottom:1px solid var(--line); }
+  .line header > div:first-of-type { flex:1; }
+  .line h3 { font-size:15pt; }
+  .tag { font-family:"JetBrains Mono",monospace; font-size:7pt; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--fg2); margin-top:1mm; }
+  .line p { margin:3.5mm 0 4mm; color:var(--fg2); font-size:9.6pt; }
+  .prods { list-style:none; display:grid; grid-template-columns:repeat(2,1fr);
+    gap:1mm 7mm; counter-reset:p; }
+  .prods li { counter-increment:p; padding:1.6mm 0; border-bottom:1px dotted var(--line);
+    font-weight:500; }
+  .prods li::before { content:counter(p,decimal-leading-zero);
+    font-family:"JetBrains Mono",monospace; font-size:7.5pt; color:var(--fg2);
+    margin-right:3.5mm; }
+
+  .journey { list-style:none; }
+  .journey li { display:grid; grid-template-columns:11mm 1fr; gap:3mm;
+    padding:5mm 0; border-top:1px solid var(--line); }
+  .journey h3 { font-size:14pt; }
+  .journey p { color:var(--fg2); margin-top:1mm; }
+
+  .aside { margin-top:auto; border-left:2.5px solid var(--fg); padding:3.5mm 5mm;
+    font-size:9.6pt; color:var(--fg2); }
+  .aside b { color:var(--fg); font-weight:600; }
+  footer { display:flex; justify-content:space-between; margin-top:7mm;
+    padding-top:3mm; border-top:1.2px solid var(--fg); }
+</style></head><body><div class="sheet first">
+<div class="cover">
+  <img class="logo" src="../assets/img/logo-white.svg" alt="">
+  <h1>Site<br>Map</h1>
+  <p class="lede">A plain guide to every page on the NTF INTERNATIONAL website &mdash;
+  what each one is for, and the order a buyer meets them in.</p>
+  <div class="stats">
+    <div><b>36</b><span class="mono">Pages in total</span></div>
+    <div><b>6</b><span class="mono">Menu pages</span></div>
+    <div><b>5</b><span class="mono">Product lines</span></div>
+    <div><b>25</b><span class="mono">Products</span></div>
+  </div>
+  <div class="contents">
+    <h2>What&rsquo;s inside</h2>
+    <ol><li><span>02</span> The main menu</li><li><span>03</span> Martial Arts &amp; MMA Wear</li><li><span>04</span> MMA Grappling Dummy &amp; Fitness Wear</li><li><span>05</span> GYM Wrist Straps</li><li><span>06</span> How a buyer gets to a quote</li></ol>
+  </div>
+  <div class="cfoot">
+    <span class="mono">https://danialhyatt7-collab.github.io/NTF/</span>
+    <span class="mono">info@ntfint.com &middot; +92 333 8686122</span>
+  </div>
+</div></div><div class="sheet">
+  <div class="mast"><span class="mono">NTF INTERNATIONAL &middot; Site Map</span>
+    <span class="mono">2 / 6</span></div>
+  <h2 class="sh">The main menu</h2>
+<p class="intro">These six pages sit in the header on every screen. Everything else
+on the site is reached from one of them.</p>
+<ul class="menu"><li>
+  <div class="num">01</div>
+  <div>
+    <h3>Home</h3>
+    <div class="path">/index.html</div>
+    <p>The front page. Shows who we are, the five product lines, the departments inside the factory and the nine-step process, then sends the visitor to a quote.</p>
+  </div></li><li>
+  <div class="num">02</div>
+  <div>
+    <h3>Collections</h3>
+    <div class="path">/collections.html</div>
+    <p>The catalogue. One tile per product line; clicking a tile opens that line&#x27;s own page.</p>
+  </div></li><li>
+  <div class="num">03</div>
+  <div>
+    <h3>Process</h3>
+    <div class="path">/process.html</div>
+    <p>How an order is made, step by step, from your sketch to the packed carton.</p>
+  </div></li><li>
+  <div class="num">04</div>
+  <div>
+    <h3>About</h3>
+    <div class="path">/about.html</div>
+    <p>Who NTF INTERNATIONAL is, what the factory can do and the full manufacturing banner.</p>
+  </div></li><li>
+  <div class="num">05</div>
+  <div>
+    <h3>Contact</h3>
+    <div class="path">/contact.html</div>
+    <p>Phone, WhatsApp, email, address and working hours.</p>
+  </div></li><li>
+  <div class="num">06</div>
+  <div>
+    <h3>Request a Quote</h3>
+    <div class="path">/quote.html</div>
+    <p>The enquiry form: product line, sizes, quantity and how you want it branded.</p>
+  </div></li></ul>
+<div class="aside"><b>Also on the site, but not in the menu:</b> a Not Found page that
+catches a mistyped address and offers the catalogue, plus two files search engines
+read &mdash; an index of all pages and a crawler instruction file.</div>
+  <footer><span class="mono">The main menu</span><span class="mono">info@ntfint.com</span></footer>
+</div><div class="sheet">
+  <div class="mast"><span class="mono">NTF INTERNATIONAL &middot; Site Map</span>
+    <span class="mono">3 / 6</span></div>
+  <h2 class="sh">The five product lines</h2><p class="intro">Each line has its own page, and every product on it has a page of its own with fabric, sizes, build detail and the minimum order.</p><section class="line">
+  <header><span class="num">01</span>
+    <div><h3>Martial Arts</h3><div class="tag">Uniforms &amp; Belts</div></div>
+    <div class="count mono">5 products</div>
+  </header>
+  <p>Competition-grade gis, dobok and belts cut to federation weights and finished with your branding.</p>
+  <ol class="prods"><li>Pearl Weave BJJ Gi</li><li>Heavyweight Karate Gi</li><li>Taekwondo Dobok</li><li>Judo Double Weave Gi</li><li>Embroidered Rank Belt</li></ol>
+</section><section class="line">
+  <header><span class="num">02</span>
+    <div><h3>MMA Wear</h3><div class="tag">Fight Kit</div></div>
+    <div class="count mono">5 products</div>
+  </header>
+  <p>Fight shorts, rash guards and compression built to move at full extension and survive the cage floor.</p>
+  <ol class="prods"><li>Pro Fight Shorts</li><li>Long Sleeve Rash Guard</li><li>Grappling Spats</li><li>Vale Tudo Shorts</li><li>Walkout Fight Jersey</li></ol>
+</section>
+  <footer><span class="mono">Martial Arts &amp; MMA Wear</span><span class="mono">info@ntfint.com</span></footer>
+</div><div class="sheet">
+  <div class="mast"><span class="mono">NTF INTERNATIONAL &middot; Site Map</span>
+    <span class="mono">4 / 6</span></div>
+  <h2 class="sh">Product lines, continued</h2><section class="line">
+  <header><span class="num">03</span>
+    <div><h3>MMA Grappling Dummy</h3><div class="tag">Training Gear</div></div>
+    <div class="count mono">5 products</div>
+  </header>
+  <p>Unfilled and filled throwing dummies in micro-fibre leather and heavy canvas, stitched to take daily slams.</p>
+  <ol class="prods"><li>Ground &amp; Pound Dummy</li><li>Throwing Judo Dummy</li><li>Youth Training Dummy</li><li>Submission Grappling Dummy</li><li>Wrestling Takedown Bag</li></ol>
+</section><section class="line">
+  <header><span class="num">04</span>
+    <div><h3>Fitness Wear</h3><div class="tag">Gym Apparel</div></div>
+    <div class="count mono">5 products</div>
+  </header>
+  <p>Seamless, sculpted and performance-knit gym apparel for private-label ranges and studio kit.</p>
+  <ol class="prods"><li>Seamless Sculpt Leggings</li><li>Performance Training Tee</li><li>Sculpt Sports Bra</li><li>Tapered Jogger Pants</li><li>Lifting Stringer Vest</li></ol>
+</section>
+  <footer><span class="mono">MMA Grappling Dummy &amp; Fitness Wear</span><span class="mono">info@ntfint.com</span></footer>
+</div><div class="sheet">
+  <div class="mast"><span class="mono">NTF INTERNATIONAL &middot; Site Map</span>
+    <span class="mono">5 / 6</span></div>
+  <h2 class="sh">Product lines, continued</h2><section class="line">
+  <header><span class="num">05</span>
+    <div><h3>GYM Wrist Straps</h3><div class="tag">Lifting Support</div></div>
+    <div class="count mono">5 products</div>
+  </header>
+  <p>Lifting straps, wrist wraps and figure-8s in cotton, neoprene and full-grain leather, branded your way.</p>
+  <ol class="prods"><li>Heavy Cotton Lifting Straps</li><li>Figure-8 Deadlift Straps</li><li>Stiff Wrist Wraps</li><li>Leather Lasso Straps</li><li>Padded Wrist Support Wrap</li></ol>
+</section>
+  <footer><span class="mono">GYM Wrist Straps</span><span class="mono">info@ntfint.com</span></footer>
+</div><div class="sheet">
+  <div class="mast"><span class="mono">NTF INTERNATIONAL &middot; Site Map</span>
+    <span class="mono">6 / 6</span></div>
+  <h2 class="sh">How a buyer gets to a quote</h2>
+<p class="intro">The whole site is built to carry someone from the front page to a
+filled-in enquiry in six moves.</p>
+<ul class="journey"><li><div class="num">01</div>
+  <div><h3>Arrives</h3><p>A buyer lands on the home page, from search or a link you sent.</p></div></li><li><div class="num">02</div>
+  <div><h3>Browses</h3><p>They open Collections and pick the line they need — say MMA Wear.</p></div></li><li><div class="num">03</div>
+  <div><h3>Compares</h3><p>Inside the line they see its five products, each with fabric, sizes and build detail.</p></div></li><li><div class="num">04</div>
+  <div><h3>Reads the detail</h3><p>A product page gives the full specification and the minimum order.</p></div></li><li><div class="num">05</div>
+  <div><h3>Checks you out</h3><p>Process and About answer the question every buyer asks: can this factory actually make it.</p></div></li><li><div class="num">06</div>
+  <div><h3>Asks for a price</h3><p>Request a Quote collects the line, sizes, quantity and branding, and emails it to you.</p></div></li></ul>
+<div class="aside"><b>Every product page and every collection page</b> carries a
+&ldquo;request a quote&rdquo; button, so a buyer never has to go looking for it.</div>
+  <footer><span class="mono">How a buyer gets to a quote</span><span class="mono">info@ntfint.com</span></footer>
+</div></body></html>
