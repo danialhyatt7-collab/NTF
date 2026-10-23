@@ -38,10 +38,10 @@ and takes about ten minutes to set up.</p>
     &mdash; the inbox you want enquiries in.</div></li>
   <li><span class="n">2</span><div><b>You click the confirmation link</b> they email you.
     Nothing works until this is done. This is where most people get stuck.</div></li>
-  <li><span class="n">3</span><div><b>You send me the short web address</b> they give you.
+  <li><span class="n">3</span><div><b>Send that short web address across to us.</b>
     It looks like <span class="hl">formspree.io/f/abcd1234</span>.</div></li>
-  <li><span class="n">4</span><div><b>I connect it to the form</b> and test it. That part
-    takes me a few minutes.</div></li>
+  <li><span class="n">4</span><div><b>We connect it to the form</b> and test it. That takes
+    a few minutes at our end.</div></li>
   <li><span class="n">5</span><div><b>You send one test enquiry</b> from the live site and
     check your inbox, and the spam folder. Mark the first one as &ldquo;not spam&rdquo;.</div></li>
 </ol>
@@ -64,7 +64,7 @@ PAGE2 = '''
 list, and the site rebuilds itself from that list &mdash; the collection tile, the product
 page, the search and the site map all appear on their own.</p>
 
-<h2>What I need from you</h2>
+<h2>What we need from you</h2>
 <ol class="steps">
   <li><span class="n">1</span><div><b>One clear photo</b> of the product, as big a file as
     you have.</div></li>
@@ -75,11 +75,11 @@ page, the search and the site map all appear on their own.</p>
   <li><span class="n">4</span><div><b>Three or four facts</b> a buyer asks about: fabric
     or weight, how it is built, how it can be branded.</div></li>
   <li><span class="n">5</span><div><b>One or two lines</b> describing it, in your own
-    words. I will tidy them.</div></li>
+    words. We will tidy them.</div></li>
 </ol>
 
 <div class="big tight">
-  <p>Send those on WhatsApp and the product is live on the site the same day. A whole new
+  <p>Send those over on WhatsApp and the product is live on the site the same day. A whole new
   collection works the same way &mdash; its name, a photo and its products.</p>
 </div>
 
@@ -92,7 +92,7 @@ page, the search and the site map all appear on their own.</p>
 </div>
 
 <div class="note"><b>Your next step:</b> open the free form account, click the
-confirmation email, and send me the address. That one job is the difference between
+confirmation email, and send the address over. That one job is the difference between
 enquiries reaching you and quietly disappearing.</div>
 '''
 
