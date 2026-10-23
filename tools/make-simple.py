@@ -10,6 +10,14 @@ import build as B
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 def e(s): return html.escape(str(s))
 
+INSET = os.environ.get("INSET") == "1"
+INSET_CSS = """
+  html, body { background:#fff; }
+  .sheet { background:#fff; padding:0; display:block; }
+  .card { background:var(--bg); margin:6mm; height:285mm; padding:13mm 14mm 10mm;
+    display:flex; flex-direction:column; }
+"""
+
 PAGE1 = '''
 <div class="top">
   <img class="logo" src="../assets/img/logo-white.svg" alt="">
@@ -144,11 +152,13 @@ page = '''<!doctype html>
 
   .note { margin-top:auto; border:1px solid var(--line); border-left:3px solid var(--fg);
     padding:4mm 5mm; color:var(--fg2); font-size:10.2pt; }
-</style></head><body>
-<div class="sheet">''' + PAGE1 + '''</div>
-<div class="sheet">''' + PAGE2 + '''</div>
+</style>''' + ('<style>' + INSET_CSS + '</style>' if INSET else '') + '''</head><body>
+''' + (('<div class="sheet"><div class="card">' + PAGE1 + '</div></div>'
+          '<div class="sheet"><div class="card">' + PAGE2 + '</div></div>') if INSET else
+         ('<div class="sheet">' + PAGE1 + '</div>'
+          '<div class="sheet">' + PAGE2 + '</div>')) + '''
 </body></html>'''
 
-out = os.path.join(ROOT, "tools", "simple-page.html")
+out = os.path.join(ROOT, "tools", "simple-inset-page.html" if INSET else "simple-page.html")
 open(out, "w").write(page)
 print("wrote", out)
