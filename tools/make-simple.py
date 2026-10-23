@@ -1,0 +1,159 @@
+#!/usr/bin/env python3
+"""Two-page plain guide: why quote emails don't arrive, and how products get added.
+
+No code, no jargon. Writes tools/simple-page.html for tools/make-simple.mjs.
+"""
+import os, sys, html
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import build as B
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+def e(s): return html.escape(str(s))
+
+PAGE1 = '''
+<div class="top">
+  <img class="logo" src="../assets/img/logo-white.svg" alt="">
+  <div class="r"><span class="mono">''' + e(B.BRAND) + '''</span>
+    <span class="mono">Page 1 of 2</span></div>
+</div>
+
+<h1>Why enquiry<br>emails are not<br>reaching you</h1>
+
+<div class="big">
+  <p>The form is not actually sending anything. When someone presses send, the website
+  opens a half-written email <b>inside their own email app</b> and leaves it there for
+  them to send.</p>
+  <p>Most people never finish it. Many have no email app set up at all. So the enquiry
+  disappears, and you are never told. That is why your test never arrived.</p>
+</div>
+
+<h2>What needs to happen</h2>
+<p class="intro">Your website sits on free hosting that can show pages but cannot send
+email by itself. A small helper service does the sending. It is free for normal volumes
+and takes about ten minutes to set up.</p>
+
+<ol class="steps">
+  <li><span class="n">1</span><div><b>You open a free account</b> at
+    <span class="hl">formspree.io</span> using <span class="hl">''' + e(B.EMAIL) + '''</span>
+    &mdash; the inbox you want enquiries in.</div></li>
+  <li><span class="n">2</span><div><b>You click the confirmation link</b> they email you.
+    Nothing works until this is done. This is where most people get stuck.</div></li>
+  <li><span class="n">3</span><div><b>You send me the short web address</b> they give you.
+    It looks like <span class="hl">formspree.io/f/abcd1234</span>.</div></li>
+  <li><span class="n">4</span><div><b>I connect it to the form</b> and test it. That part
+    takes me a few minutes.</div></li>
+  <li><span class="n">5</span><div><b>You send one test enquiry</b> from the live site and
+    check your inbox, and the spam folder. Mark the first one as &ldquo;not spam&rdquo;.</div></li>
+</ol>
+
+<div class="note"><b>After that:</b> every enquiry arrives in your inbox within seconds,
+and a copy is kept online in case an email ever goes missing. Keep WhatsApp on the site
+as well &mdash; most buyers in this trade reply there faster.</div>
+'''
+
+PAGE2 = '''
+<div class="top">
+  <img class="logo" src="../assets/img/logo-white.svg" alt="">
+  <div class="r"><span class="mono">''' + e(B.BRAND) + '''</span>
+    <span class="mono">Page 2 of 2</span></div>
+</div>
+
+<h1>Adding a<br>new product</h1>
+
+<p class="intro">The website is not edited page by page. All the products live in one
+list, and the site rebuilds itself from that list &mdash; the collection tile, the product
+page, the search and the site map all appear on their own.</p>
+
+<h2>What I need from you</h2>
+<ol class="steps">
+  <li><span class="n">1</span><div><b>One clear photo</b> of the product, as big a file as
+    you have.</div></li>
+  <li><span class="n">2</span><div><b>The name</b>, and which of the five lines it belongs
+    to.</div></li>
+  <li><span class="n">3</span><div><b>Sizes</b> you make it in, and the
+    <b>minimum order</b> quantity.</div></li>
+  <li><span class="n">4</span><div><b>Three or four facts</b> a buyer asks about: fabric
+    or weight, how it is built, how it can be branded.</div></li>
+  <li><span class="n">5</span><div><b>One or two lines</b> describing it, in your own
+    words. I will tidy them.</div></li>
+</ol>
+
+<div class="big tight">
+  <p>Send those on WhatsApp and the product is live on the site the same day. A whole new
+  collection works the same way &mdash; its name, a photo and its products.</p>
+</div>
+
+<h2>Two things worth knowing</h2>
+<div class="two">
+  <div class="panel"><b>Nothing is ever lost</b><p>Every change is saved with a date, so
+  anything can be put back exactly as it was.</p></div>
+  <div class="panel"><b>Changes go live in a minute</b><p>Once a change is published, the
+  site updates itself. Your visitors do nothing.</p></div>
+</div>
+
+<div class="note"><b>Your next step:</b> open the free form account, click the
+confirmation email, and send me the address. That one job is the difference between
+enquiries reaching you and quietly disappearing.</div>
+'''
+
+page = '''<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>''' + e(B.BRAND) + ''' — Quick Guide</title>
+<link rel="stylesheet" href="../assets/css/fonts.css">
+<style>
+  @page { size:A4; margin:0; }
+  :root { --bg:#000; --fg:#fff; --fg2:rgba(255,255,255,.66); --line:rgba(255,255,255,.2); }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--fg); font-family:"Inter",system-ui,sans-serif;
+    font-size:10.5pt; line-height:1.52; -webkit-print-color-adjust:exact;
+    print-color-adjust:exact; }
+  .sheet { width:210mm; height:296mm; padding:16mm 18mm 13mm; overflow:hidden;
+    display:flex; flex-direction:column; position:relative; }
+  /* white rules framing the top and right edge of every sheet */
+  .sheet::before { content:""; position:absolute; top:8mm; left:8mm; right:8mm;
+    border-top:1px solid var(--fg); }
+  .sheet::after { content:""; position:absolute; top:8mm; bottom:8mm; right:8mm;
+    border-right:1px solid var(--fg); }
+  .sheet + .sheet { page-break-before:always; }
+  h1,h2,b { font-family:"Plus Jakarta Sans",sans-serif; }
+  h1 { font-weight:800; font-size:26pt; line-height:1.03; letter-spacing:-.03em;
+    text-transform:uppercase; margin:7mm 0 6mm; }
+  h2 { font-weight:800; font-size:13pt; letter-spacing:-.02em; text-transform:uppercase;
+    margin:7mm 0 2.5mm; padding-bottom:2.2mm; border-bottom:1px solid var(--line); }
+  b { font-weight:700; }
+  .mono { font-family:"JetBrains Mono",monospace; font-size:7pt; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--fg2); }
+  .top { display:flex; justify-content:space-between; align-items:flex-start;
+    padding-bottom:4mm; border-bottom:1.2px solid var(--fg); }
+  .logo { width:17mm; }
+  .r { text-align:right; display:flex; flex-direction:column; gap:1.5mm; }
+
+  .big { border-left:3px solid var(--fg); padding:1mm 0 1mm 6mm; }
+  .big p { font-size:11.6pt; line-height:1.5; }
+  .big p + p { margin-top:3mm; color:var(--fg2); }
+  .big.tight { margin-top:6mm; }
+  .big.tight p { font-size:10.5pt; color:var(--fg2); }
+  .intro { color:var(--fg2); margin-top:3mm; }
+
+  .steps { list-style:none; margin-top:4mm; }
+  .steps li { display:grid; grid-template-columns:9mm 1fr; gap:4mm; align-items:start;
+    padding:2.6mm 0; border-bottom:1px dotted var(--line); }
+  .steps .n { font-family:"Plus Jakarta Sans",sans-serif; font-weight:800; font-size:12.5pt;
+    line-height:1.2; color:var(--fg2); }
+  .steps div { color:var(--fg2); }
+  .hl { color:var(--fg); font-weight:600; }
+
+  .two { display:grid; grid-template-columns:1fr 1fr; gap:5mm; margin-top:4mm; }
+  .panel { border:1px solid var(--line); padding:4.5mm 5mm; }
+  .panel p { color:var(--fg2); font-size:9.8pt; margin-top:1.6mm; }
+
+  .note { margin-top:auto; border:1px solid var(--line); border-left:3px solid var(--fg);
+    padding:4mm 5mm; color:var(--fg2); font-size:10.2pt; }
+</style></head><body>
+<div class="sheet">''' + PAGE1 + '''</div>
+<div class="sheet">''' + PAGE2 + '''</div>
+</body></html>'''
+
+out = os.path.join(ROOT, "tools", "simple-page.html")
+open(out, "w").write(page)
+print("wrote", out)
