@@ -108,12 +108,7 @@ page = '''<!doctype html>
     font-size:10.5pt; line-height:1.52; -webkit-print-color-adjust:exact;
     print-color-adjust:exact; }
   .sheet { width:210mm; height:296mm; padding:16mm 18mm 13mm; overflow:hidden;
-    display:flex; flex-direction:column; position:relative; }
-  /* white rules framing the top and right edge of every sheet */
-  .sheet::before { content:""; position:absolute; top:8mm; left:8mm; right:8mm;
-    border-top:1px solid var(--fg); }
-  .sheet::after { content:""; position:absolute; top:8mm; bottom:8mm; right:8mm;
-    border-right:1px solid var(--fg); }
+    display:flex; flex-direction:column; }
   .sheet + .sheet { page-break-before:always; }
   h1,h2,b { font-family:"Plus Jakarta Sans",sans-serif; }
   h1 { font-weight:800; font-size:26pt; line-height:1.03; letter-spacing:-.03em;
